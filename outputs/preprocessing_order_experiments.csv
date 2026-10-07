@@ -1,0 +1,13 @@
+experiment,order,model,PR-AUC,ROC-AUC
+1. Split vs. fit pre-processing,"A: split, then fit on train only",Logistic regression,0.724715363828679,0.9308877995642703
+1. Split vs. fit pre-processing,"A: split, then fit on train only",Gradient boosting,0.7449790574285985,0.9388671023965143
+1. Split vs. fit pre-processing,"B: fit on all rows, then split",Logistic regression,0.7254571906365388,0.9307788671023964
+1. Split vs. fit pre-processing,"B: fit on all rows, then split",Gradient boosting,0.748315362624102,0.9381045751633986
+2. Split vs. feature engineering,"A: engineer on full history, then split",Logistic regression,0.724715363828679,0.9308877995642703
+2. Split vs. feature engineering,"A: engineer on full history, then split",Gradient boosting,0.7449790574285985,0.9388671023965143
+2. Split vs. feature engineering,"B: split, then engineer inside each split",Logistic regression,0.7208966018684965,0.9293191721132897
+2. Split vs. feature engineering,"B: split, then engineer inside each split",Gradient boosting,0.7452275949979741,0.936813725490196
+3. Impute vs. scale,"A: impute, then scale",Logistic regression,0.724715363828679,0.9308877995642703
+3. Impute vs. scale,"A: impute, then scale",Gradient boosting,0.7449790574285985,0.9388671023965143
+3. Impute vs. scale,"B: scale, then impute",Logistic regression,0.7249479063832572,0.9308496732026145
+3. Impute vs. scale,"B: scale, then impute",Gradient boosting,0.7449790574285985,0.9388671023965143
