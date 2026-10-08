@@ -1,0 +1,54 @@
+table,raceId,driverId,field,original,cleaned,action
+pit_stops,1128,822.0,stop/lap,15/2,2/15,scoped swap
+pit_stops,1128,840.0,stop/lap,42/2,2/42,scoped swap
+pit_stops,1128,840.0,stop/lap,48/3,3/48,scoped swap
+pit_stops,1128,1.0,stop/lap,51/2,2/51,scoped swap
+pit_stops,1128,830.0,stop/lap,52/2,2/52,scoped swap
+pit_stops,1128,858.0,stop/lap,57/2,2/57,scoped swap
+pit_stops,1128,855.0,stop/lap,70/2,2/70,scoped swap
+qualifying,937,829.0,constructorId,206,209,canonical race-entry metadata
+qualifying,937,833.0,constructorId,206,209,canonical race-entry metadata
+qualifying,941,829.0,constructorId,206,209,canonical race-entry metadata
+qualifying,941,833.0,constructorId,206,209,canonical race-entry metadata
+qualifying,942,834.0,constructorId,206,209,canonical race-entry metadata
+qualifying,942,829.0,constructorId,206,209,canonical race-entry metadata
+qualifying,943,834.0,constructorId,206,209,canonical race-entry metadata
+qualifying,943,829.0,constructorId,206,209,canonical race-entry metadata
+qualifying,944,834.0,constructorId,206,209,canonical race-entry metadata
+qualifying,944,829.0,constructorId,206,209,canonical race-entry metadata
+qualifying,38,27.0,number,12,21,canonical race-entry metadata
+qualifying,104,47.0,number,20,21,canonical race-entry metadata
+qualifying,104,46.0,number,21,20,canonical race-entry metadata
+qualifying,125,23.0,number,3,5,canonical race-entry metadata
+qualifying,177,69.0,number,22,20,canonical race-entry metadata
+qualifying,191,68.0,number,20,21,canonical race-entry metadata
+qualifying,191,44.0,number,14,11,canonical race-entry metadata
+qualifying,192,44.0,number,14,11,canonical race-entry metadata
+qualifying,193,68.0,number,18,21,canonical race-entry metadata
+qualifying,199,23.0,number,9,10,canonical race-entry metadata
+qualifying,201,22.0,number,16,18,canonical race-entry metadata
+qualifying,211,63.0,number,18,19,canonical race-entry metadata
+qualifying,211,50.0,number,19,18,canonical race-entry metadata
+qualifying,212,57.0,number,10,9,canonical race-entry metadata
+qualifying,212,63.0,number,18,19,canonical race-entry metadata
+qualifying,212,50.0,number,19,18,canonical race-entry metadata
+qualifying,213,50.0,number,19,18,canonical race-entry metadata
+qualifying,213,63.0,number,18,19,canonical race-entry metadata
+qualifying,214,50.0,number,19,18,canonical race-entry metadata
+qualifying,214,63.0,number,18,19,canonical race-entry metadata
+qualifying,215,55.0,number,17,7,canonical race-entry metadata
+qualifying,216,63.0,number,18,19,canonical race-entry metadata
+qualifying,216,50.0,number,19,18,canonical race-entry metadata
+qualifying,241,65.0,number,6,2,canonical race-entry metadata
+qualifying,242,65.0,number,6,2,canonical race-entry metadata
+qualifying,244,84.0,number,26,25,canonical race-entry metadata
+qualifying,247,63.0,number,3,4,canonical race-entry metadata
+qualifying,250,84.0,number,26,25,canonical race-entry metadata
+qualifying,251,84.0,number,26,25,canonical race-entry metadata
+qualifying,256,85.0,number,16,17,canonical race-entry metadata
+qualifying,2,2.0,number,5,6,canonical race-entry metadata
+qualifying,3,21.0,number,11,21,canonical race-entry metadata
+constructor_results,937,,constructorId,206,209,duplicate alias aggregate omitted; identical native aggregate retained
+constructor_results,941,,constructorId,206,209,duplicate alias aggregate omitted; identical native aggregate retained
+constructor_results,943,,constructorId,206,209,duplicate alias aggregate omitted; identical native aggregate retained
+constructor_results,945,,constructorId,206,209,duplicate alias aggregate omitted; identical native aggregate retained

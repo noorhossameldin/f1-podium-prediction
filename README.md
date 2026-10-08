@@ -3,6 +3,15 @@
 Predicts whether a driver finishes on the podium (`positionOrder <= 3`) using only information available
 after qualifying and before the race start. Data: Formula 1 World Championship 1950–2024 (Kaggle / Ergast).
 
+## Team members
+
+| Student ID | Name |
+|---|---|
+| 58-20196 | Mohamed Ahmed Mohamed Abdelaziz |
+| 58-3004 | Daniel Maged Shehata Youssef |
+| 58-7146 | Marwan Montasser Morad Hassan Metwally |
+| 58-2686 | Noor Hossameldin Ahmed Aboouf Ali |
+
 ## Contents
 
 | Path | What it is |
@@ -16,15 +25,51 @@ after qualifying and before the race start. Data: Formula 1 World Championship 1
 
 ## How to run
 
+The local environment is `.venv` (Python 3.12). In VS Code, open the notebook,
+click **Select Kernel → Python Environments**, and select `.venv/bin/python`.
+The named Jupyter kernel is **F1 Podium (.venv, Python 3.12)**.
+
+To run the environment already installed in this folder:
+
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-jupyter nbconvert --to notebook --execute --inplace f1_podium_prediction.ipynb   # or open it and Run All (about 2 minutes)
-python make_report.py                                                            # needs Google Chrome for the PDF step
+source .venv/bin/activate
+python scripts/run_notebook.py   # prints progress; saves the notebook after a successful run
+python make_report.py           # rebuilds the PDF using Google Chrome
 ```
 
+To recreate the verified package versions on another Python 3.12 installation:
+
+```bash
+python3.12 -m venv .venv && source .venv/bin/activate
+python -m pip install -r requirements.lock.txt
+python -m ipykernel install --prefix .venv --name f1-podium --display-name 'F1 Podium (.venv, Python 3.12)'
+python scripts/run_notebook.py
+python make_report.py
+```
+
+`requirements.txt` lists the direct dependencies; `requirements.lock.txt` records the
+installed versions, including transitive dependencies. Full execution includes many
+training runs and can take several minutes, depending on the machine.
+
 On Kaggle: attach the dataset `rohanrao/formula-1-world-championship-1950-2020`, turn Internet on (the notebook
-installs `shap` / `lime` if they are missing) and Run All. The data folder is detected automatically.
+installs `shap` / `lime` if they are missing), select Kaggle's Python kernel, and Run All.
+The data folder is detected automatically. Local execution does not establish that
+the notebook has been successfully run or published on Kaggle.
+
+## Understanding and reviewing the project
+
+- `PROJECT_WALKTHROUGH.md`: a guided explanation, with worked examples and reading checkpoints.
+- `REQUIREMENTS_AUDIT.md`: requirement-by-requirement assessment and issues to address before submission.
+- `DATA_CONSISTENCY_AUDIT.md`: CSV-only findings, applied repairs, and unresolved disagreements.
+- `GRID_RECONSTRUCTION.md`: main missing-grid handling and the separate exploratory reconstruction experiment.
+- `FIXES_AND_REMAINING_ISSUES.md`: what was repaired, why, and what still needs better evidence.
+- `outputs/validation_summary.json`: independently checked artifact counts and consistency results.
+
+Read the audit before treating the generated report's conclusions as final.
+After running the notebook and rebuilding the report, rerun `python scripts/validate_artifacts.py`
+to check the exported tables and report plot coverage.
+For the additional CSV consistency checks, run `python scripts/audit_data_consistency.py`,
+or `%run scripts/audit_data_consistency.py` in a notebook cell.
 
 ## Notebook sections
 

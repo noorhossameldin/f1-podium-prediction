@@ -15,91 +15,93 @@
       2024
     ]
   },
+  "grid_policy": "Missing disputed grids",
+  "grid_hypotheses_used_in_main": false,
   "selected_model": "Gradient boosting",
   "best_statistical_model": "Gradient boosting",
-  "threshold": 0.3405277197312204,
+  "threshold": 0.39061205400224924,
   "hyperparameters": {
     "logistic_regression": {
-      "C": 10.0,
+      "C": 3.0,
       "class_weight": null
     },
     "random_forest": {
-      "max_depth": 8,
+      "max_depth": 12,
       "min_samples_leaf": 5
     },
     "gradient_boosting": {
       "learning_rate": 0.1,
       "max_depth": 4,
-      "l2_regularization": 1.0,
-      "max_iter": 40
+      "l2_regularization": 0.0,
+      "max_iter": 43
     },
     "neural_network": {
       "hidden": [
         64
       ],
-      "dropout": 0.0,
+      "dropout": 0.3,
       "weight_decay": 0.0001
     }
   },
   "test_metrics": {
     "Grid-frequency rule (no ML)": {
       "threshold": 0.5,
-      "ROC-AUC": 0.91,
-      "PR-AUC": 0.6464,
+      "ROC-AUC": 0.9118,
+      "PR-AUC": 0.6476,
       "F1": 0.6486,
       "Precision": 0.6502,
       "Recall": 0.6471,
-      "Brier": 0.0731,
+      "Brier": 0.0729,
       "Accuracy": 0.8948
     },
     "Logistic regression (baseline, default)": {
-      "threshold": 0.2958,
-      "ROC-AUC": 0.9327,
-      "PR-AUC": 0.6954,
+      "threshold": 0.2979,
+      "ROC-AUC": 0.9333,
+      "PR-AUC": 0.6961,
       "F1": 0.6667,
-      "Precision": 0.56,
-      "Recall": 0.8235,
-      "Brier": 0.0714,
-      "Accuracy": 0.8764
+      "Precision": 0.5623,
+      "Recall": 0.8186,
+      "Brier": 0.0712,
+      "Accuracy": 0.8771
     },
     "Logistic regression (tuned)": {
-      "threshold": 0.2947,
-      "ROC-AUC": 0.9323,
-      "PR-AUC": 0.6934,
-      "F1": 0.6654,
-      "Precision": 0.5559,
-      "Recall": 0.8284,
-      "Brier": 0.0717,
-      "Accuracy": 0.8749
+      "threshold": 0.3177,
+      "ROC-AUC": 0.933,
+      "PR-AUC": 0.6947,
+      "F1": 0.6748,
+      "Precision": 0.5789,
+      "Recall": 0.8088,
+      "Brier": 0.0714,
+      "Accuracy": 0.883
     },
     "Random forest": {
-      "threshold": 0.3866,
-      "ROC-AUC": 0.9378,
-      "PR-AUC": 0.6973,
+      "threshold": 0.3917,
+      "ROC-AUC": 0.9379,
+      "PR-AUC": 0.6863,
       "F1": 0.6746,
-      "Precision": 0.6589,
-      "Recall": 0.6912,
-      "Brier": 0.0697,
-      "Accuracy": 0.8999
+      "Precision": 0.6544,
+      "Recall": 0.6961,
+      "Brier": 0.07,
+      "Accuracy": 0.8992
     },
     "Gradient boosting": {
-      "threshold": 0.3405,
-      "ROC-AUC": 0.937,
-      "PR-AUC": 0.6906,
-      "F1": 0.6667,
-      "Precision": 0.6316,
-      "Recall": 0.7059,
-      "Brier": 0.0699,
-      "Accuracy": 0.894
+      "threshold": 0.3906,
+      "ROC-AUC": 0.9374,
+      "PR-AUC": 0.6884,
+      "F1": 0.6651,
+      "Precision": 0.654,
+      "Recall": 0.6765,
+      "Brier": 0.0695,
+      "Accuracy": 0.8977
     },
     "Shallow neural network": {
-      "threshold": 0.4449,
-      "ROC-AUC": 0.9229,
-      "PR-AUC": 0.6676,
-      "F1": 0.618,
-      "Precision": 0.6135,
-      "Recall": 0.6225,
-      "Brier": 0.0758,
+      "threshold": 0.3346,
+      "ROC-AUC": 0.9262,
+      "PR-AUC": 0.6836,
+      "F1": 0.6503,
+      "Precision": 0.5959,
+      "Recall": 0.7157,
+      "Brier": 0.074,
       "Accuracy": 0.8845
     }
   }

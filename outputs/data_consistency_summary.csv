@@ -1,0 +1,16 @@
+issue,source_table,rows,groups,classification,recommendation
+qualifying_constructor_mismatch,qualifying,10,,Conflicting team identity across tables,Reconcile the specific entries; do not merge constructor IDs globally.
+qualifying_car_number_mismatch,qualifying,32,,Conflicting entry metadata; exact truth not established,Keep both values and an audit flag until a documented authority is chosen.
+duplicate_modern_grid_slot,results,8,4.0,Conflicting ordinary grid assignments,Flag disputed slots; do not substitute qualifying order without accounting for penalties.
+pit_stop_lap_apparently_swapped,pit_stops,7,6.0,Strong evidence of swapped fields in seven Monaco 2024 records,Swap stop/lap for the identified records on a cleaned copy and verify chronology and keys.
+pit_first_stop_not_recorded,pit_stops,2,,Incomplete coverage or numbering ambiguity,Flag incomplete history; do not invent a missing stop or renumber the observed record.
+logged_laps_exceed_result_laps,lap_times,37,,Official classification and timing log disagree; not necessarily corruption,Retain both fields; distinguish recorded laps from classified laps.
+fastest_lap_exceeds_result_laps,results,12,,Fastest-lap metadata contradicts classified lap total,Flag the bundle; examine lap logs before choosing a source or setting values missing.
+pit_lap_exceeds_result_laps,pit_stops,3,,Timing versus classification discrepancy for a disqualified entry,Preserve observed pit stops; do not overwrite official zero-lap classification automatically.
+position_differs_position_order,results,13,,Different classification/order conventions in one historical race,Document the discrepancy; preserve the milestone target definition positionOrder <= 3.
+withdrawal_label_with_completed_laps,results,23,,Withdrawal can occur after a race start in historical records,Do not define every Withdrew label as a non-start across all eras.
+withdrawal_marker_with_completed_laps,results,5,,Historical withdrawal markers do not universally imply DNS,Condition start inference on era and lap evidence; retain unresolved cases.
+modern_withdrawal_marker_not_status_withdrew,results,17,,Withdrawal marker carries information missing from the status-only start rule,Use both positionText and failure status when forming the Q3 numerator and denominator.
+fastest_lap_rank_zero,results,258,,"Numeric no-ranking marker, not an actual fastest-lap rank",Represent unranked as missing in a derived rank column; preserve raw zero.
+constructor_result_without_matching_team_entry,constructor_results,7,,"Valid constructor ID, but no corresponding race/team entry in results",Reconcile by race; beware duplicate aggregates after mapping a conflicting team ID.
+lapped_status_differs_lap_totals,results,20,,Status and classified lap totals disagree,"Flag, distinguish timing/classification conventions, and avoid guessed replacement values."

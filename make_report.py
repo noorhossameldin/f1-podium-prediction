@@ -6,10 +6,13 @@ conclusion, every figure and the small result tables. Run the notebook first, th
     python make_report.py
 """
 import base64
+import os
 import re
 import shutil
+import signal
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 import markdown
@@ -17,7 +20,12 @@ import nbformat
 
 NOTEBOOK = Path("f1_podium_prediction.ipynb")
 TITLE = "Formula 1 Podium Prediction — Milestone 1 Analytical Report"
-TEAM = "Team: (add team name and member names / IDs here)"
+TEAM_MEMBERS = [
+    ("58-20196", "Mohamed Ahmed Mohamed Abdelaziz"),
+    ("58-3004", "Daniel Maged Shehata Youssef"),
+    ("58-7146", "Marwan Montasser Morad Hassan Metwally"),
+    ("58-2686", "Noor Hossameldin Ahmed Aboouf Ali"),
+]
 
 MAX_TABLE_ROWS, MAX_TABLE_COLS = 24, 10      # larger tables stay in the notebook only
 MAX_TEXT_LINES, MAX_TEXT_WIDTH = 14, 150
@@ -62,9 +70,13 @@ def escape(text):
 
 def build():
     nb = nbformat.read(NOTEBOOK, as_version=4)
-    if not any(c.cell_type == "code" and c.get("outputs") for c in nb.cells):
-        sys.exit("The notebook has no outputs. Run it first (Run All), then build the report.")
-    parts = [f"<h1>{TITLE}</h1>", f'<div class="team">{TEAM}</div>',
+    code_cells = [c for c in nb.cells if c.cell_type == "code" and c.source.strip()]
+    if not code_cells or any(c.get("execution_count") is None for c in code_cells):
+        sys.exit("The notebook is not fully executed. Run All successfully before building the report.")
+    if any(out.get("output_type") == "error" for c in code_cells for out in c.get("outputs", [])):
+        sys.exit("The notebook contains execution errors. Fix them and Run All before building the report.")
+    team_html = "<br>".join(f"{escape(name)} — {escape(student_id)}" for student_id, name in TEAM_MEMBERS)
+    parts = [f"<h1>{TITLE}</h1>", f'<div class="team"><strong>Team members</strong><br>{team_html}</div>',
              '<p class="note">This report is generated from the executed notebook <code>f1_podium_prediction.ipynb</code>: it contains the '
              "notebook's explanations, computed conclusions, figures and small result tables, without the code. "
              "Section numbers are the same as in the notebook. Large tables are in the notebook only.</p>"]
@@ -99,8 +111,26 @@ def to_pdf(html_path):
     if chrome is None:
         print("Chrome not found: open report.html in a browser and use Print -> Save as PDF.")
         return
-    subprocess.run([chrome, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
-                    f"--print-to-pdf={Path('report.pdf').resolve()}", html_path.as_uri()], check=True, capture_output=True)
+    pdf_path = Path("report.pdf").resolve()
+    previous_mtime = pdf_path.stat().st_mtime_ns if pdf_path.exists() else None
+    with tempfile.TemporaryDirectory(prefix="f1-report-chrome-") as profile:
+        process = subprocess.Popen(
+            [chrome, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
+             f"--user-data-dir={profile}", f"--print-to-pdf={pdf_path}", html_path.as_uri()],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True,
+        )
+        try:
+            _, stderr = process.communicate(timeout=45)
+        except subprocess.TimeoutExpired:
+            # Some Chrome versions stay alive after printing. Stop only this
+            # isolated process group, then verify a newly completed PDF below.
+            os.killpg(process.pid, signal.SIGKILL)
+            _, stderr = process.communicate()
+        if not pdf_path.exists() or pdf_path.stat().st_mtime_ns == previous_mtime:
+            sys.exit(f"Chrome did not produce a new report.pdf: {stderr.decode(errors='replace')[-1000:]}")
+        pdf = pdf_path.read_bytes()
+        if not pdf.startswith(b"%PDF-") or not pdf.rstrip().endswith(b"%%EOF"):
+            sys.exit("Chrome produced an incomplete PDF; open report.html and export it manually.")
     print("Wrote report.pdf")
 
 if __name__ == "__main__":

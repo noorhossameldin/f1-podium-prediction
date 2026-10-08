@@ -1,0 +1,9 @@
+raceId,driverId,source_grid,missing_slot,qualifying_position,assumed_grid,alternative_grid,position_change,verified,hypothesis,used_in_main_pipeline
+119,21,13,12,12,12,13,-1,False,The duplicated pair retains relative qualifying order; one recorded slot is wrong.,False
+119,35,13,12,13,13,12,0,False,The duplicated pair retains relative qualifying order; one recorded slot is wrong.,False
+938,831,17,11,12,11,17,-6,False,The duplicated pair retains relative qualifying order; one recorded slot is wrong.,False
+938,832,17,11,13,17,11,0,False,The duplicated pair retains relative qualifying order; one recorded slot is wrong.,False
+941,828,17,16,17,16,17,-1,False,The duplicated pair retains relative qualifying order; one recorded slot is wrong.,False
+941,829,17,16,18,17,16,0,False,The duplicated pair retains relative qualifying order; one recorded slot is wrong.,False
+1141,830,17,18,12,17,18,0,False,The duplicated pair retains relative qualifying order; one recorded slot is wrong.,False
+1141,807,17,18,19,18,17,1,False,The duplicated pair retains relative qualifying order; one recorded slot is wrong.,False

@@ -1,0 +1,7 @@
+issue,before,after,treatment
+Swapped pit stop/lap,7,0,Scoped swap
+Qualifying team mismatch,10,0,Canonical entry metadata
+Qualifying number mismatch,32,0,Canonical entry metadata
+Duplicate 2015 team aggregates,4,0,Identical native aggregate retained
+Zero fastest-lap rank,258,0,Derived unranked = missing
+Disputed grid entries,8,8,"Unresolved; model grid inputs missing, training-imputed"
