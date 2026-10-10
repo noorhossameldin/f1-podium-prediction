@@ -1,37 +1,49 @@
 model,policy,seed,set,raceId,driverId,probability,prediction
-Logistic regression,Qualifying-order hypothesis,42,test,1141,807,3.726467640096707e-05,0
-Logistic regression,Qualifying-order hypothesis,42,test,1141,830,0.01664369871416995,0
-Logistic regression,Opposite pair assignments,42,test,1141,807,4.1846739853167946e-05,0
-Logistic regression,Opposite pair assignments,42,test,1141,830,0.014806005942602129,0
-Logistic regression,Missing disputed grids,42,test,1141,807,9.015481754686005e-05,0
-Logistic regression,Missing disputed grids,42,test,1141,830,0.03361816071851431,0
+Logistic regression,Verified starting grid,42,test,1141,807,4.467894730626228e-05,0
+Logistic regression,Verified starting grid,42,test,1141,830,0.018190010900148854,0
+Logistic regression,Qualifying-order hypothesis,42,test,1141,807,4.467894730626228e-05,0
+Logistic regression,Qualifying-order hypothesis,42,test,1141,830,0.018190010900148854,0
+Logistic regression,Opposite pair assignments,42,test,1141,807,5.063100779298608e-05,0
+Logistic regression,Opposite pair assignments,42,test,1141,830,0.01626474167850268,0
+Logistic regression,Missing disputed grids,42,test,1141,807,0.00010798743994050073,0
+Logistic regression,Missing disputed grids,42,test,1141,830,0.036640414724017786,0
+Random forest,Verified starting grid,42,test,1141,807,0.01198466917894694,0
+Random forest,Verified starting grid,42,test,1141,830,0.27796267065993147,0
 Random forest,Qualifying-order hypothesis,42,test,1141,807,0.01198466917894694,0
 Random forest,Qualifying-order hypothesis,42,test,1141,830,0.27796267065993147,0
 Random forest,Opposite pair assignments,42,test,1141,807,0.013095780290058052,0
-Random forest,Opposite pair assignments,42,test,1141,830,0.2751848928821537,0
+Random forest,Opposite pair assignments,42,test,1141,830,0.27518489288215375,0
 Random forest,Missing disputed grids,42,test,1141,807,0.01180923058245571,0
 Random forest,Missing disputed grids,42,test,1141,830,0.2843663214073322,0
+Gradient boosting,Verified starting grid,42,test,1141,807,0.014188613584999968,0
+Gradient boosting,Verified starting grid,42,test,1141,830,0.4944873791769385,1
 Gradient boosting,Qualifying-order hypothesis,42,test,1141,807,0.014188613584999968,0
 Gradient boosting,Qualifying-order hypothesis,42,test,1141,830,0.4944873791769385,1
 Gradient boosting,Opposite pair assignments,42,test,1141,807,0.014188613584999968,0
 Gradient boosting,Opposite pair assignments,42,test,1141,830,0.4944873791769385,1
 Gradient boosting,Missing disputed grids,42,test,1141,807,0.014188613584999968,0
 Gradient boosting,Missing disputed grids,42,test,1141,830,0.5059559393587741,1
-Shallow neural network,Qualifying-order hypothesis,42,test,1141,807,5.848026830790332e-06,0
-Shallow neural network,Qualifying-order hypothesis,42,test,1141,830,0.1960984319448471,0
-Shallow neural network,Qualifying-order hypothesis,43,test,1141,807,8.808658094494604e-06,0
-Shallow neural network,Qualifying-order hypothesis,43,test,1141,830,0.17117086052894592,0
-Shallow neural network,Qualifying-order hypothesis,44,test,1141,807,1.0152447430300526e-05,0
-Shallow neural network,Qualifying-order hypothesis,44,test,1141,830,0.2135677933692932,0
-Shallow neural network,Opposite pair assignments,42,test,1141,807,4.5186620809545275e-06,0
-Shallow neural network,Opposite pair assignments,42,test,1141,830,0.16969731450080872,0
-Shallow neural network,Opposite pair assignments,43,test,1141,807,3.817193828581367e-06,0
-Shallow neural network,Opposite pair assignments,43,test,1141,830,0.17834356427192688,0
-Shallow neural network,Opposite pair assignments,44,test,1141,807,1.1418794201745186e-05,0
-Shallow neural network,Opposite pair assignments,44,test,1141,830,0.19757142663002014,0
-Shallow neural network,Missing disputed grids,42,test,1141,807,7.1933172876015306e-06,0
-Shallow neural network,Missing disputed grids,42,test,1141,830,0.39314571022987366,1
-Shallow neural network,Missing disputed grids,43,test,1141,807,1.673547740210779e-05,0
-Shallow neural network,Missing disputed grids,43,test,1141,830,0.2678966224193573,0
-Shallow neural network,Missing disputed grids,44,test,1141,807,2.9759998142253608e-05,0
-Shallow neural network,Missing disputed grids,44,test,1141,830,0.34796860814094543,0
+Shallow neural network,Verified starting grid,42,test,1141,807,1.7880952327686828e-06,0
+Shallow neural network,Verified starting grid,42,test,1141,830,0.25604742765426636,0
+Shallow neural network,Verified starting grid,43,test,1141,807,2.744394578257925e-06,0
+Shallow neural network,Verified starting grid,43,test,1141,830,0.4062398076057434,0
+Shallow neural network,Verified starting grid,44,test,1141,807,4.146736955590313e-06,0
+Shallow neural network,Verified starting grid,44,test,1141,830,0.2745992839336395,0
+Shallow neural network,Qualifying-order hypothesis,42,test,1141,807,1.7880952327686828e-06,0
+Shallow neural network,Qualifying-order hypothesis,42,test,1141,830,0.25604742765426636,0
+Shallow neural network,Qualifying-order hypothesis,43,test,1141,807,2.744394578257925e-06,0
+Shallow neural network,Qualifying-order hypothesis,43,test,1141,830,0.4062398076057434,0
+Shallow neural network,Qualifying-order hypothesis,44,test,1141,807,4.146736955590313e-06,0
+Shallow neural network,Qualifying-order hypothesis,44,test,1141,830,0.2745992839336395,0
+Shallow neural network,Opposite pair assignments,42,test,1141,807,1.7936373524207738e-06,0
+Shallow neural network,Opposite pair assignments,42,test,1141,830,0.22305549681186676,0
+Shallow neural network,Opposite pair assignments,43,test,1141,807,3.7489146507141413e-06,0
+Shallow neural network,Opposite pair assignments,43,test,1141,830,0.21164003014564514,0
+Shallow neural network,Opposite pair assignments,44,test,1141,807,4.760047886520624e-06,0
+Shallow neural network,Opposite pair assignments,44,test,1141,830,0.2790449559688568,0
+Shallow neural network,Missing disputed grids,42,test,1141,807,4.961423655913677e-06,0
+Shallow neural network,Missing disputed grids,42,test,1141,830,0.32640424370765686,0
+Shallow neural network,Missing disputed grids,43,test,1141,807,9.950977073458489e-06,0
+Shallow neural network,Missing disputed grids,43,test,1141,830,0.3289951980113983,0
+Shallow neural network,Missing disputed grids,44,test,1141,807,1.682934453128837e-05,0
+Shallow neural network,Missing disputed grids,44,test,1141,830,0.46306198835372925,1

@@ -163,18 +163,52 @@ raw_result_metadata = metadata.merge(results, on="resultId", suffixes=("", "_raw
 check("rank_zero_representation_fixed", not metadata.fastest_lap_rank.eq(0).any())
 check("source_rank_unchanged", np.isclose(raw_result_metadata["rank"], raw_result_metadata.rank_raw, equal_nan=True).all())
 check("grid_source_preserved", raw_result_metadata.grid_original.eq(raw_result_metadata.grid_raw).all())
-check("grid_changes_identifiable", metadata.grid.ne(metadata.grid_original).eq(metadata.grid_inferred).all())
+check("grid_changes_identifiable", metadata.grid.ne(metadata.grid_original).eq(metadata.grid_corrected).all())
 check("grid_no_slots_inferred_in_main", metadata.grid_inferred.sum() == 0)
 check("grid_no_assumed_assignments_in_main", metadata.grid_assignment_assumed.sum() == 0)
 repair_log = pd.read_csv(ROOT / "outputs/cleaning_repairs.csv")
-check("grid_hypotheses_absent_from_repair_log", not repair_log.field.eq("grid").any())
+grid_repairs = repair_log[repair_log.field.eq("grid")]
+check("four_official_grid_repairs_logged", len(grid_repairs) == 4 and grid_repairs.source_url.notna().all())
 check("grid_original_conflicts_retained", metadata.grid_conflict_source.sum() == 8)
-check("grid_no_unmarked_replacements", not metadata.loc[~metadata.grid_assignment_assumed, "grid_inferred"].any())
+check("grid_no_unmarked_replacements", metadata.loc[metadata.grid_corrected, "grid_external_verified"].all())
+verified = pd.read_csv(ROOT / "outputs/grid_external_verification.csv")
+corrections = pd.read_csv(ROOT / "outputs/grid_verified_corrections.csv")
+manifest = json.loads((ROOT / "outputs/grid_verified_sources.json").read_text())
+check("eight_official_grid_entries_checked", len(verified) == 8 and not verified.duplicated(["raceId", "driverId"]).any())
+check("four_official_grid_entries_changed", len(corrections) == 4 and verified.changed.sum() == 4)
+check("official_grid_records_embedded_in_notebook", pd.DataFrame(literal_assignment("VERIFIED_GRID_RECORDS"))
+      .equals(verified.drop(columns=["changed", "used_in_main_pipeline"])))
+check("official_grid_manifest_matches_notebook", manifest["records"] == literal_assignment("VERIFIED_GRID_RECORDS")
+      and manifest["guidance_reported_on"] == "2026-10-10" and "TA" in manifest["ta_guidance"])
+logged_corrections = grid_repairs.copy()
+logged_corrections["driverId"] = logged_corrections.driverId.astype(int)
+logged_corrections["cleaned"] = logged_corrections.cleaned.astype(int)
+repair_evidence = logged_corrections.merge(corrections, on=["raceId", "driverId"],
+                                         suffixes=("_log", "_evidence"), validate="one_to_one")
+check("official_grid_log_matches_evidence", len(repair_evidence) == 4
+      and repair_evidence.cleaned.eq(repair_evidence.verified_grid).all()
+      and repair_evidence.source_url_log.eq(repair_evidence.source_url_evidence).all())
+check("official_grid_sources_primary", verified.source_url.str.startswith(
+    ("https://www.formula1.com/en/results/", "https://www.fia.com/sites/default/files/")).all()
+    and verified.source_url.nunique() == 4)
+expected_grids = {(119, 21): 12, (119, 35): 13, (938, 831): 11, (938, 832): 17,
+                  (941, 828): 16, (941, 829): 17, (1141, 830): 17, (1141, 807): 18}
+check("official_grid_expected_assignments", verified.set_index(["raceId", "driverId"]).verified_grid.to_dict() == expected_grids)
+source_checks = verified.merge(results.loc[results.raceId.isin(verified.raceId), ["raceId", "driverId", "grid", "number"]],
+    on=["raceId", "driverId"], validate="one_to_one").merge(races[["raceId", "date"]], on="raceId")
+check("official_grid_source_values_match_csv", source_checks.source_grid.eq(source_checks.grid).all())
+check("official_grid_car_numbers_match_csv", source_checks.car_number.eq(source_checks.number).all())
+check("official_grid_event_dates_match_csv", source_checks.race_date.eq(source_checks.date.dt.strftime("%Y-%m-%d")).all())
+check("official_grid_check_dates_recorded", verified.accessed_on.eq("2026-10-10").all())
+check("official_grid_checks_used_in_main", verified.used_in_main_pipeline.all()
+      and metadata.grid_external_verified.sum() == 8 and metadata.grid_corrected.sum() == 4)
 grid_hypotheses = pd.read_csv(ROOT / "outputs/grid_assignment_hypotheses.csv")
-check("grid_hypotheses_unverified", len(grid_hypotheses) == 8 and not grid_hypotheses.verified.any())
+check("grid_hypotheses_match_official_records", len(grid_hypotheses) == 8
+      and grid_hypotheses.matches_verified_grid.all() and grid_hypotheses.verified.all())
 check("grid_hypotheses_not_used_in_main", not grid_hypotheses.used_in_main_pipeline.any())
-check("main_grid_policy_is_missing", summary["grid_policy"] == "Missing disputed grids"
-      and summary["grid_hypotheses_used_in_main"] is False)
+check("main_grid_policy_is_verified", summary["grid_policy"] == "Verified starting grid"
+      and summary["grid_hypotheses_used_in_main"] is False
+      and summary["grid_external_verified_entries"] == 8 and summary["grid_source_corrections"] == 4)
 for rid, pair in grid_hypotheses.groupby("raceId"):
     source_race = results[results.raceId.eq(rid)]
     slots = source_race.loc[source_race.grid.gt(0), "grid"].astype(int)
@@ -187,17 +221,22 @@ for rid, pair in grid_hypotheses.groupby("raceId"):
           raw_q.set_index(["raceId", "driverId"]).loc[[(rid, driver) for driver in ordered_pair.driverId], "position"].tolist())
     check(f"grid_{rid}_opposite_assignment", ordered_pair.alternative_grid.tolist() == ordered_pair.assumed_grid.tolist()[::-1])
 canonical_metadata = metadata.sort_values("positionOrder").drop_duplicates(["raceId", "driverId"])
-grid_check = table.merge(canonical_metadata[["raceId", "driverId", "grid", "grid_conflict", "grid_assignment_assumed"]],
+grid_check = table.merge(canonical_metadata[["raceId", "driverId", "grid", "grid_conflict", "grid_conflict_source",
+                                            "grid_external_verified", "grid_verified_position"]],
                           on=["raceId", "driverId"], validate="one_to_one")
-check("disputed_grid_inputs_missing", grid_check.loc[grid_check.grid_conflict, ["grid_pos", "grid_drop"]].isna().all().all())
-check("all_eight_grid_conflicts_unresolved", grid_check.grid_conflict.sum() == 8)
+checked_inputs = grid_check[grid_check.grid_external_verified]
+check("verified_grid_inputs_used", len(checked_inputs) == 8
+      and checked_inputs.grid_pos.eq(checked_inputs.grid_verified_position).all()
+      and checked_inputs.grid_drop.eq(checked_inputs.grid_pos - checked_inputs.quali_pos).all())
+check("all_eight_source_grid_conflicts_resolved", grid_check.grid_conflict.sum() == 0
+      and grid_check.grid_conflict_source.sum() == 8)
 check("only_disputed_grid_positions_missing", grid_check.grid_pos.isna().eq(grid_check.grid_conflict).all())
 gap_audit = pd.read_csv(ROOT / "outputs/grid_gap_audit.csv")
 check("grid_gaps_not_universally_filled", len(gap_audit) == 17 and gap_audit.eligible_for_pair_hypothesis.sum() == 4)
 grid_trials = pd.read_csv(ROOT / "outputs/grid_policy_sensitivity_trials.csv")
 grid_sensitivity = pd.read_csv(ROOT / "outputs/grid_policy_sensitivity.csv")
-check("grid_sensitivity_complete", len(grid_sensitivity) == 24 and
-      grid_sensitivity.groupby(["model", "set"]).policy.nunique().eq(3).all())
+check("grid_sensitivity_complete", len(grid_sensitivity) == 32 and
+      grid_sensitivity.groupby(["model", "set"]).policy.nunique().eq(4).all())
 check("grid_sensitivity_matched_seeds", grid_trials.groupby(["model", "policy", "set"]).seed.nunique()
       .eq([3 if name[0] == "Shallow neural network" else 1 for name in
            grid_trials.groupby(["model", "policy", "set"]).seed.nunique().index]).all())
@@ -206,9 +245,9 @@ check("grid_sensitivity_metrics_valid", grid_sensitivity[metrics].notna().all().
 for family, main_name in [("Logistic regression", "Logistic regression (tuned)"),
                           ("Random forest", "Random forest"), ("Gradient boosting", "Gradient boosting")]:
     observed = grid_sensitivity[(grid_sensitivity.model == family)
-        & (grid_sensitivity.policy == "Missing disputed grids") & (grid_sensitivity["set"] == "test")].iloc[0]
+        & (grid_sensitivity.policy == "Verified starting grid") & (grid_sensitivity["set"] == "test")].iloc[0]
     main = comparison[(comparison.model == main_name) & (comparison["set"] == "test")].iloc[0]
-    check(f"grid_main_matches_missing_policy_{family}", np.isclose(observed[metrics].to_numpy(dtype=float),
+    check(f"grid_main_matches_verified_policy_{family}", np.isclose(observed[metrics].to_numpy(dtype=float),
           main[metrics].to_numpy(dtype=float)).all())
 grid_predictions = pd.read_csv(ROOT / "outputs/grid_policy_entry_predictions.csv")
 check("grid_sensitivity_entry_probabilities_valid", grid_predictions.probability.between(0, 1).all())
@@ -243,7 +282,7 @@ if report_html.exists():
     check("all_notebook_plots_in_report_html", report_html.read_text().count('<img src="data:image/png;') == image_count)
 
 result = {
-    "assessment_date": "2026-10-08",
+    "assessment_date": "2026-10-10",
     "python": sys.version.split()[0],
     "executed_code_cells": len(code),
     "modeling_rows": len(table),

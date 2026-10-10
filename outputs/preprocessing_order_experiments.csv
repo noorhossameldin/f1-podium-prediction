@@ -1,13 +1,13 @@
 experiment,order,model,PR-AUC,ROC-AUC
-1. Split vs. fit pre-processing,"A: split, then fit on train only",Logistic regression,0.72678436778241,0.931078431372549
+1. Split vs. fit pre-processing,"A: split, then fit on train only",Logistic regression,0.7274837539215273,0.9310729847494552
 1. Split vs. fit pre-processing,"A: split, then fit on train only",Gradient boosting,0.7431224886192005,0.9387554466230937
 1. Split vs. fit pre-processing,"B: fit on all development rows, then split",Logistic regression,0.7269231256721368,0.9310511982570806
 1. Split vs. fit pre-processing,"B: fit on all development rows, then split",Gradient boosting,0.7431224886192005,0.9387554466230937
-2. Split vs. feature engineering,"A: engineer on full history, then split",Logistic regression,0.72678436778241,0.931078431372549
+2. Split vs. feature engineering,"A: engineer on full history, then split",Logistic regression,0.7274837539215273,0.9310729847494552
 2. Split vs. feature engineering,"A: engineer on full history, then split",Gradient boosting,0.7431224886192005,0.9387554466230937
-2. Split vs. feature engineering,"B: split, then engineer inside each split",Logistic regression,0.7197376181254911,0.9291884531590414
+2. Split vs. feature engineering,"B: split, then engineer inside each split",Logistic regression,0.7197245679340563,0.9291830065359478
 2. Split vs. feature engineering,"B: split, then engineer inside each split",Gradient boosting,0.7443497558575256,0.9375953159041395
-3. Impute vs. scale,"A: impute, then scale",Logistic regression,0.72678436778241,0.931078431372549
+3. Impute vs. scale,"A: impute, then scale",Logistic regression,0.7274837539215273,0.9310729847494552
 3. Impute vs. scale,"A: impute, then scale",Gradient boosting,0.7431224886192005,0.9387554466230937
-3. Impute vs. scale,"B: scale, then impute",Logistic regression,0.7274959200977139,0.9310784313725491
+3. Impute vs. scale,"B: scale, then impute",Logistic regression,0.7274299187541196,0.9310729847494554
 3. Impute vs. scale,"B: scale, then impute",Gradient boosting,0.7431224886192005,0.9387554466230937

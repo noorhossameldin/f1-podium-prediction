@@ -168,6 +168,11 @@ cases supported by those comparisons:
   not independently prove which car number was physically displayed.
 - Four 2015 alias constructor aggregates duplicate an existing native team's
   identical zero-point aggregate. Only these four duplicate copies are removed.
+- Following the TA guidance reported by the team on 10 October 2026, four
+  starting-grid clashes are checked online against official F1/FIA records. Both
+  drivers in each pair are matched by race, name and car number; four slots
+  change, four are confirmed unchanged, and source URLs/access dates are logged.
+  See the step-by-step grid explanation below.
 - Fastest-lap rank zero becomes missing in a derived column. The original zero
   remains available, because zero does not mean a rank ahead of first.
 
@@ -200,13 +205,29 @@ The main modeling decisions are:
    should not be treated as better than pole position. In modern data it can
    also occur for non-starters. The repaired feature is named `no_grid_slot`; it does not claim to identify a pit-lane start.
 
-Eight entries share a positive grid slot with another driver in their race.
-Each pair also has one missing slot, but qualifying order does not uniquely
-resolve the assignment because the grid can change. We preserve source values
-and flag the conflicts, leave their main model grid features missing, and use
-training-only imputation. Grid-based descriptive comparisons exclude these entries.
-Section 12.1 retains hypothetical qualifying-order and opposite assignments as
-sensitivity experiments only. See `GRID_RECONSTRUCTION.md` for the distinction.
+Eight source entries share a positive grid slot with another driver in their
+race. We found them by grouping positive grid values by race and checking counts.
+Each pair also has a gap. That suggested an error but did not identify the driver
+to move, since qualifying order can change after penalties or a sprint.
+
+The team asked its TA and reported that she advised checking the actual values
+online. We used official starting-grid records, matching race/date, driver and
+car number for both members of each pair. They support Fisichella 13→12 (Germany
+2003), Nasr 17→11 (Italy 2015), Ericsson 17→16 (Russia 2015), and Hülkenberg 17→18
+(São Paulo 2024). The other four drivers retain their recorded slots. For São
+Paulo we use the FIA final numbered grid rather than compressing an empty slot.
+
+Why choose these replacements? Official evidence identifies the slots; a gap,
+qualifying-order assumption or improved test score cannot prove them. The main
+model now uses verified starting slots and derived grid drops. Original CSVs,
+original values and conflict flags remain preserved, and each changed row has a
+source link and access date. No finishing result is used as a starting position.
+Run All uses an embedded dated manifest, so the notebook does not scrape the web.
+
+Section 12.1 compares verified values, our earlier qualifying-order candidate,
+opposite assignments and the earlier missing-input policy. The candidate happens
+to match the official values, but it is source evidence that justifies adopting
+them. See `GRID_RECONSTRUCTION.md` for all links and exported provenance.
 
 **Checkpoint:** Why could a model with 85% accuracy be useless here?
 
@@ -577,12 +598,14 @@ is useful alone. A small drop does not prove a group contains no information.
 Conversely, a slight improvement after removal can be sample noise or reduced
 overfitting; it is not automatic proof that the feature is harmful.
 
-Section 12.1 also compares the main missing-grid policy with hypothetical
-qualifying-order and opposite assignments. Each policy refits preprocessing and
-models using the same rows and settings. Current outputs give aggregate scores
-and signed changes to individual predicted probabilities. This measures modeling
-sensitivity, not historical truth. The hypothetical assignments are not adopted;
-the main policy rests on insufficient source evidence rather than test scores.
+Section 12.1 compares the main verified-grid policy with the earlier
+qualifying-order candidate, opposite assignments and missing inputs. Each policy
+refits preprocessing and models using the same rows and settings. Current outputs
+give aggregate scores and signed changes to individual predicted probabilities.
+This measures modeling sensitivity. Official evidence, following reported TA
+guidance, establishes the main repair; model scores do not establish historical
+truth. The qualifying-order candidate produces the same inputs as the verified
+policy in these four cases.
 
 **Checkpoint:** How can a feature group be strong alone but have little unique contribution?
 

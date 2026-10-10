@@ -60,8 +60,8 @@ the notebook has been successfully run or published on Kaggle.
 
 - `PROJECT_WALKTHROUGH.md`: a guided explanation, with worked examples and reading checkpoints.
 - `REQUIREMENTS_AUDIT.md`: requirement-by-requirement assessment and issues to address before submission.
-- `DATA_CONSISTENCY_AUDIT.md`: CSV-only findings, applied repairs, and unresolved disagreements.
-- `GRID_RECONSTRUCTION.md`: main missing-grid handling and the separate exploratory reconstruction experiment.
+- `DATA_CONSISTENCY_AUDIT.md`: CSV-based findings, applied repairs, and unresolved disagreements; four grid corrections additionally use official sources after TA guidance.
+- `GRID_RECONSTRUCTION.md`: TA guidance, four verified grid corrections with official links, preserved source values, and sensitivity experiments.
 - `FIXES_AND_REMAINING_ISSUES.md`: what was repaired, why, and what still needs better evidence.
 - `outputs/validation_summary.json`: independently checked artifact counts and consistency results.
 

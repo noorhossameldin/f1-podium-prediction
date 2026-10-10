@@ -1,7 +1,8 @@
-# Repairs and remaining issues — 8 October 2026
+# Repairs and remaining issues — 10 October 2026
 
 The supported fixes are applied in `f1_podium_prediction.ipynb`. They use the
-supplied CSVs. All fourteen raw files stay unchanged; repaired tables, original
+supplied CSVs, with four official-source grid corrections after the team reported
+its TA had advised online verification on 10 October 2026. All fourteen raw files stay unchanged; repaired tables, original
 values and audit flags are saved under `outputs/`.
 
 ## What was fixed, how we found it, and why
@@ -13,7 +14,7 @@ values and audit flags are saved under `outputs/`.
 | 32 conflicting car numbers | Qualifying and result metadata disagree for the same entry | Reconcile cleaned qualifying to result-entry numbers and preserve both. The policy establishes consistency; it does not prove which conflicting number was physically used. |
 | Four duplicate 2015 constructor aggregates | Alias 206 rows duplicate native 209 rows with identical zero points and missing status | Omit only the four duplicate alias aggregates. Keep the native records and all other constructor history. Total points stay unchanged. |
 | 258 fastest-lap ranks equal zero | Each lacks a fastest-lap time; zero is not a valid first-or-later rank | Add `fastest_lap_rank`, representing zero as missing. Preserve raw `rank`. |
-| Eight disputed grid entries | Four modern races each assign the same positive grid slot to two drivers | Preserve and flag both source entries; leave their main grid predictors missing for training-only imputation. Keep hypothetical qualifying-order and opposite assignments as refitted sensitivity experiments only. The correct assignments remain unknown. |
+| Eight disputed grid entries | Four modern races each assign the same positive grid slot to two drivers | After reported TA guidance, check all eight entries against official F1/FIA grids; correct Fisichella 13→12, Nasr 17→11, Ericsson 17→16 and Hülkenberg 17→18. Preserve originals and source flags. Verified values feed the main model; source URLs and dates are logged. |
 | Q3 counted withdrawals as mechanical retirements/starts | Zero-lap `W` entries can carry component-failure labels; historical withdrawals can also have positive laps | Separate failure type from start eligibility. Positive laps confirm a start; zero-lap withdrawal/non-qualification markers exclude an entry. Other zero-lap entries remain uncertain. |
 | Unknown status labels became mechanical by default | Failure classification used a fallback instead of positive evidence | Use an explicit mechanical allowlist; unknown labels default to ambiguous. Keep strict/broad failure-type sensitivity. |
 | Reliability denominator did not follow Q3 | Historical mechanical failures were divided by entries including marked non-starts | Use the same start-eligibility convention for previous-race constructor reliability, aggregating both cars before shifting. |
@@ -23,15 +24,16 @@ values and audit flags are saved under `outputs/`.
 | An order experiment used test covariates | The deliberately invalid preprocessing comparison fitted on all splits | Restrict that negative example to train + validation development data. Final models still fit imputation/scaling on train only. |
 | Some conclusions overstated the evidence | Non-significant estimates, seed variation and descriptive explanations were treated as proof | Qualify home/ranking effects, distinguish seed noise from statistical uncertainty, avoid guessed red-flag causes, and label revised holdout results honestly. |
 
-`outputs/cleaning_repairs.csv` contains each of the **53 direct row-level
-reconciliation actions** (7 + 10 + 32 + 4). Derived rank changes and unresolved
-grid flags are represented in their exported columns and
+`outputs/cleaning_repairs.csv` contains each of the **57 direct row-level
+reconciliation actions** (7 + 10 + 32 + 4 + 4 official-grid changes). Derived rank changes and original
+grid conflict flags are represented in their exported columns and
 `outputs/cleaning_repair_summary.csv`. The original-source audit flags remain
 available even when a cleaned representation has been repaired.
 
-The unresolved-grid decision and exploratory reconstruction are documented in
-`GRID_RECONSTRUCTION.md` and notebook Sections 3.5 and 12.1. Main grid numbers
-remain unchanged; hypotheses are separate sensitivity experiments only.
+The source-backed grid decision, official links, and prior reconstruction
+hypothesis are documented in `GRID_RECONSTRUCTION.md` and notebook Sections 3.5
+and 12.1. Only four cleaned grid numbers change; all original CSVs remain intact.
+The earlier missing-input and hypothetical assignments remain sensitivity comparisons.
 
 ## What cannot be reconstructed reliably from these CSVs
 
@@ -40,7 +42,6 @@ true replacement value.
 
 | Unresolved issue | Current handling | Recommended resolution |
 |---|---|---|
-| True grid slots for eight entries | Original slots preserved and conflicts flagged; main grid inputs missing, with hypothetical assignments used only for sensitivity | Obtain a corrected final-grid record for each of the four races. Qualifying order alone cannot account for penalties or sprint-derived grids. |
 | 112 uncertain zero-lap entries in Q3 | Main estimate assumes they started; positive-lap-only estimates and entry-eligibility bounds reported by era and constructor | Obtain start/DNS classifications or additional timing evidence. Until then retain sensitivity; do not declare all zero-lap rows DNS. |
 | Two pit histories begin at stop 2 | Marked `incomplete_stop_history`; existing records retained | Obtain the missing original pit record or documentation of the numbering convention. Do not invent stop 1 or renumber by assumption. |
 | 12 fastest-lap indices exceed classified laps | Bundle flagged; values retained and excluded from prediction inputs | Compare trusted timing records with the classification and resolve the entire fastest-lap bundle together. A guessed index or time would create new inconsistencies. |

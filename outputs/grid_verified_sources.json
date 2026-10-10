@@ -1,0 +1,111 @@
+{
+  "ta_guidance": "Team reported asking the TA; guidance was to search online for actual grids and document changes.",
+  "guidance_reported_on": "2026-10-10",
+  "checked_on": "2026-10-10",
+  "records": [
+    {
+      "raceId": 119,
+      "driverId": 21,
+      "driver": "Giancarlo Fisichella",
+      "car_number": 11,
+      "race_date": "2003-08-03",
+      "event": "Germany 2003",
+      "source_grid": 13,
+      "verified_grid": 12,
+      "source_title": "Formula 1 official starting-grid results",
+      "source_url": "https://www.formula1.com/en/results/2003/races/748/germany/starting-grid",
+      "accessed_on": "2026-10-10"
+    },
+    {
+      "raceId": 119,
+      "driverId": 35,
+      "driver": "Jacques Villeneuve",
+      "car_number": 16,
+      "race_date": "2003-08-03",
+      "event": "Germany 2003",
+      "source_grid": 13,
+      "verified_grid": 13,
+      "source_title": "Formula 1 official starting-grid results",
+      "source_url": "https://www.formula1.com/en/results/2003/races/748/germany/starting-grid",
+      "accessed_on": "2026-10-10"
+    },
+    {
+      "raceId": 938,
+      "driverId": 831,
+      "driver": "Felipe Nasr",
+      "car_number": 12,
+      "race_date": "2015-09-06",
+      "event": "Italy 2015",
+      "source_grid": 17,
+      "verified_grid": 11,
+      "source_title": "Formula 1 official starting-grid results",
+      "source_url": "https://www.formula1.com/en/results/2015/races/929/italy/starting-grid",
+      "accessed_on": "2026-10-10"
+    },
+    {
+      "raceId": 938,
+      "driverId": 832,
+      "driver": "Carlos Sainz",
+      "car_number": 55,
+      "race_date": "2015-09-06",
+      "event": "Italy 2015",
+      "source_grid": 17,
+      "verified_grid": 17,
+      "source_title": "Formula 1 official starting-grid results",
+      "source_url": "https://www.formula1.com/en/results/2015/races/929/italy/starting-grid",
+      "accessed_on": "2026-10-10"
+    },
+    {
+      "raceId": 941,
+      "driverId": 828,
+      "driver": "Marcus Ericsson",
+      "car_number": 9,
+      "race_date": "2015-10-11",
+      "event": "Russia 2015",
+      "source_grid": 17,
+      "verified_grid": 16,
+      "source_title": "Formula 1 official starting-grid results",
+      "source_url": "https://www.formula1.com/en/results/2015/races/932/russia/starting-grid",
+      "accessed_on": "2026-10-10"
+    },
+    {
+      "raceId": 941,
+      "driverId": 829,
+      "driver": "Will Stevens",
+      "car_number": 28,
+      "race_date": "2015-10-11",
+      "event": "Russia 2015",
+      "source_grid": 17,
+      "verified_grid": 17,
+      "source_title": "Formula 1 official starting-grid results",
+      "source_url": "https://www.formula1.com/en/results/2015/races/932/russia/starting-grid",
+      "accessed_on": "2026-10-10"
+    },
+    {
+      "raceId": 1141,
+      "driverId": 830,
+      "driver": "Max Verstappen",
+      "car_number": 1,
+      "race_date": "2024-11-03",
+      "event": "São Paulo 2024",
+      "source_grid": 17,
+      "verified_grid": 17,
+      "source_title": "FIA Final Starting Grid, document 63, 11:40",
+      "source_url": "https://www.fia.com/sites/default/files/decision-document/2024%20S%C3%A3o%20Paulo%20Grand%20Prix%20-%20Final%20Starting%20Grid.pdf",
+      "accessed_on": "2026-10-10"
+    },
+    {
+      "raceId": 1141,
+      "driverId": 807,
+      "driver": "Nico Hülkenberg",
+      "car_number": 27,
+      "race_date": "2024-11-03",
+      "event": "São Paulo 2024",
+      "source_grid": 17,
+      "verified_grid": 18,
+      "source_title": "FIA Final Starting Grid, document 63, 11:40",
+      "source_url": "https://www.fia.com/sites/default/files/decision-document/2024%20S%C3%A3o%20Paulo%20Grand%20Prix%20-%20Final%20Starting%20Grid.pdf",
+      "accessed_on": "2026-10-10"
+    }
+  ]
+}

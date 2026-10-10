@@ -1,0 +1,9 @@
+raceId,driverId,driver,car_number,race_date,event,source_grid,verified_grid,source_title,source_url,accessed_on,changed,used_in_main_pipeline
+119,21,Giancarlo Fisichella,11,2003-08-03,Germany 2003,13,12,Formula 1 official starting-grid results,https://www.formula1.com/en/results/2003/races/748/germany/starting-grid,2026-10-10,True,True
+119,35,Jacques Villeneuve,16,2003-08-03,Germany 2003,13,13,Formula 1 official starting-grid results,https://www.formula1.com/en/results/2003/races/748/germany/starting-grid,2026-10-10,False,True
+938,831,Felipe Nasr,12,2015-09-06,Italy 2015,17,11,Formula 1 official starting-grid results,https://www.formula1.com/en/results/2015/races/929/italy/starting-grid,2026-10-10,True,True
+938,832,Carlos Sainz,55,2015-09-06,Italy 2015,17,17,Formula 1 official starting-grid results,https://www.formula1.com/en/results/2015/races/929/italy/starting-grid,2026-10-10,False,True
+941,828,Marcus Ericsson,9,2015-10-11,Russia 2015,17,16,Formula 1 official starting-grid results,https://www.formula1.com/en/results/2015/races/932/russia/starting-grid,2026-10-10,True,True
+941,829,Will Stevens,28,2015-10-11,Russia 2015,17,17,Formula 1 official starting-grid results,https://www.formula1.com/en/results/2015/races/932/russia/starting-grid,2026-10-10,False,True
+1141,830,Max Verstappen,1,2024-11-03,São Paulo 2024,17,17,"FIA Final Starting Grid, document 63, 11:40",https://www.fia.com/sites/default/files/decision-document/2024%20S%C3%A3o%20Paulo%20Grand%20Prix%20-%20Final%20Starting%20Grid.pdf,2026-10-10,False,True
+1141,807,Nico Hülkenberg,27,2024-11-03,São Paulo 2024,17,18,"FIA Final Starting Grid, document 63, 11:40",https://www.fia.com/sites/default/files/decision-document/2024%20S%C3%A3o%20Paulo%20Grand%20Prix%20-%20Final%20Starting%20Grid.pdf,2026-10-10,True,True

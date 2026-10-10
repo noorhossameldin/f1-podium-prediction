@@ -1,18 +1,28 @@
-# Milestone 1 requirements audit — 8 October 2026
+# Milestone 1 requirements audit — 10 October 2026
 
 ## Verdict
 
-**The repaired project implements the technical sections and runs successfully.**
+**The local implementation and report are complete; submission is not yet verified.**
 The supported CSV repairs, Q3 denominator correction, calendar/roster feature
 changes and interpretation corrections have been applied. Remaining uncertainty
 is documented rather than filled with invented race facts. Submission still
 requires verified, accessible Kaggle/GitHub links. The four supplied team names
 and student IDs are included in the report and README.
 
+The eight-page brief was reread against the current files on 10 October 2026.
+All eight deliverable categories are present locally. This is not a claim that
+the revised holdout is still untouched: earlier test scores were reviewed during
+development, so that part of the brief's unseen-test expectation needs the
+qualification documented below. The final models still choose hyperparameters,
+thresholds and the inference model using validation only.
+
 The assessment uses the supplied eight-page assignment PDF, the notebook,
 supplied CSVs and regenerated artifacts. Assignment instructions are criteria
 being assessed; they were not treated as instructions to publish or submit.
-Scientific repairs use CSV evidence, without importing internet race corrections.
+Scientific repairs use CSV evidence, with four starting-grid corrections checked
+against official F1/FIA records after the team reported its TA had advised online
+verification. Sources, access dates, original values and changes are documented
+in notebook Section 3.5, the report and `GRID_RECONSTRUCTION.md`.
 
 ## What was verified after repairs
 
@@ -23,7 +33,7 @@ Scientific repairs use CSV evidence, without importing internet race corrections
   The additional semantic audit covers fifteen cross-table/column issue types.
 - Raw files and in-memory raw copies remain unchanged. Cleaning uses copies,
   preserves source values and exports repair records and unresolved flags.
-- **366 independent artifact checks** pass, including labels, modeling grain,
+- **378 independent artifact checks** pass, including labels, modeling grain,
   forty sampled prior-history calculations, repairs, Q3 eligibility/rates,
   training-only feature treatments, metrics, thresholds and selected model.
 - **8,970 rows**, **428 races**, **28 features**, **1,284 podium labels**;
@@ -43,6 +53,28 @@ historical source value is correct.
 
 Page numbers refer to the supplied assignment PDF; section numbers refer to
 `f1_podium_prediction.ipynb`.
+
+### Eight deliverables in the brief (pages 5–6)
+
+| Deliverable | Current evidence | Status |
+|---|---|---|
+| 1. One sectioned Run All notebook containing the complete pipeline | `f1_podium_prediction.ipynb`; 84 executed code cells, no errors | Complete locally; Kaggle execution unverified |
+| 2. EDA with plots | Sections 2 and 4; before/after cleaning, computed audits and distributions | Present |
+| 3. Unique driver–race modeling table with documented duplicates and pre-race features | `outputs/modeling_table.csv`; 8,970 entries, 28 features; Sections 3 and 6 | Present; retrospective input-availability assumptions disclosed |
+| 4. Model comparison and justified primary/secondary metrics | Section 11; six models/reference variants on train, validation and test; ROC-AUC, AP, F1, precision, recall, Brier, accuracy | Present; revised test is exploratory, not a new untouched evaluation |
+| 5. Feature-group ablations and at least two preprocessing-order experiments | Sections 9.2 and 12; 52 ablation configurations, three order experiments | Present |
+| 6. Plotted and interpreted global/local explanations | Section 13; permutation importance, SHAP, LIME; causal claims explicitly excluded | Present |
+| 7. Inference function on complete and partially missing records | Section 14; 28-feature, 22-feature and grid-only examples | Present |
+| 8. Analytical report with all three questions, figures, features/cutoff and limitations | `report.pdf`; 42 pages, current notebook explanations/results and four team names/IDs | Present locally; final visual review recommended |
+
+The page-8 submission items are separate: an accessible Kaggle notebook link,
+an accessible GitHub repository containing this version, and the PDF report.
+The PDF exists locally; no Kaggle publication URL is recorded and current
+repository changes remain uncommitted/unpushed. A GitHub browser fetch failed,
+so evaluator access could not be verified; this does not establish that the
+repository is private or inaccessible to the team.
+
+### Detailed requirement mapping
 
 | Requirement | PDF pages | Implementation/evidence | Assessment |
 |---|---|---|---|
@@ -93,11 +125,12 @@ See `FIXES_AND_REMAINING_ISSUES.md` for the before/after decisions and
   result-entry metadata; kept originals. Removed four identical 2015 alias
   constructor aggregates without merging constructor histories globally.
 - Represented 258 unranked fastest laps as missing in a derived column.
-- Retained eight source-conflicted grid entries and flagged their uncertainty.
-  Their main `grid_pos` and `grid_drop` inputs are missing and training-imputed.
-  Candidate qualifying-order reconstructions and opposite assignments remain
-  separate refitted sensitivity experiments, not historical corrections.
-  See `GRID_RECONSTRUCTION.md`.
+- Checked eight source-conflicted grid entries against official starting grids
+  following reported TA guidance. Corrected four cleaned slots, confirmed four
+  unchanged, and resolved all four modeled-era clashes. Main `grid_pos` and
+  `grid_drop` now use verified values; original values/source flags and all links
+  are preserved. Earlier candidate, opposite and missing-input policies remain
+  refitted sensitivity comparisons. See `GRID_RECONSTRUCTION.md`.
 - Q3 separates failure labels from start evidence, excludes marked non-starts,
   preserves positive-lap starts and quantifies 112 uncertain zero-lap entries.
   The same convention supplies past-only constructor reliability.
@@ -111,8 +144,9 @@ See `FIXES_AND_REMAINING_ISSUES.md` for the before/after decisions and
 
 ## Remaining scientific limitations and recommendations
 
-The supplied CSVs cannot reconstruct every disputed grid slot, missing pit stop,
-classification/timing mismatch or exact start of a zero-lap entry. Keep the
+Official sources now resolve the four identified grid clashes. The supplied CSVs
+cannot reconstruct every missing pit stop, classification/timing mismatch or
+exact start of a zero-lap entry. Keep the
 provenance flags and publish the chosen conventions/sensitivity results. Obtain
 reliable entry/start/timing records before replacing unresolved values. Exact
 mechanical-failure causes and continuity between renamed organisations also need
@@ -155,9 +189,9 @@ report are prepared locally; no publishing or submission was performed.
 
 Gradient boosting is selected by validation AP **0.7555**, with **43** rounds,
 depth **4**, learning rate **0.1**, L2 **0.0** and threshold **0.3906**.
-Its revised holdout AP is **0.6884**, ROC-AUC **0.9374**, F1 **0.6651**, precision
-**0.6540** and recall **0.6765**. The logistic baseline reaches AP **0.6961**;
-the grid-only rule reaches **0.6476**. The selected model need not win on test,
+Its revised holdout AP is **0.6883**, ROC-AUC **0.9374**, F1 **0.6651**, precision
+**0.6540** and recall **0.6765**. The logistic baseline reaches AP **0.6959**;
+the grid-only rule reaches **0.6465**. The selected model need not win on test,
 and these scores do not prove that extra complexity outperforms logistic
 regression on future seasons. Selecting a replacement based on the test winner
 would compromise that evaluation further.

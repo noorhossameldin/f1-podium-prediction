@@ -1,6 +1,7 @@
 # Additional CSV consistency audit
 
-This second pass uses only the fourteen supplied CSVs. It checks relationships
+Detection in this second pass uses the fourteen supplied CSVs. The later repair
+of four grid entries additionally uses official F1/FIA sources after reported TA guidance. It checks relationships
 between fields and tables, beyond primary/foreign keys and missing-value counts.
 It found additional issues; the first audit was not exhaustive.
 
@@ -102,18 +103,23 @@ Eight rows form four conflicts:
 Different drivers should not occupy the same ordinary grid slot. Their driver–race
 keys remain unique, so the original grain check did not detect this.
 
-**Applied uncertainty handling:** original grid numbers remain unchanged and
-flagged. Both affected drivers' main model grid positions and grid drops are
-missing and filled by training-only imputation. Grid-based descriptive comparisons
-exclude these entries. A duplicate/gap audit identifies candidate pairs, but
-qualifying order cannot establish the true final grid.
+**Applied source-backed repair (10 October 2026):** the team reported asking its
+TA and receiving advice to verify the actual starting grids online. Both drivers
+in each pair were checked against official F1 starting-grid results (Germany
+2003, Italy 2015 and Russia 2015) and FIA final-grid document 63 (São Paulo 2024).
+Fisichella changes 13→12, Nasr 17→11, Ericsson 17→16 and Hülkenberg 17→18.
+Villeneuve 13, Sainz 17, Stevens 17 and Verstappen 17 are confirmed unchanged.
 
-Section 12.1 retains hypothetical changes (Fisichella 13→12, Nasr 17→11,
-Ericsson 17→16 and Hülkenberg 17→18) and opposite assignments as refitted
-sensitivity experiments only. Candidates are exported with
-`used_in_main_pipeline=False`; they are absent from the main repair log.
-Thirteen other modern races with gaps but no duplicate are left unchanged.
-See `GRID_RECONSTRUCTION.md`.
+Corrections affect cleaned copies and main grid features; originals and source
+conflict flags remain available. All four modeled-era clashes are resolved.
+Eight verification records and four repair records carry official source URLs
+and access dates. See `GRID_RECONSTRUCTION.md` and notebook Section 3.5 for the
+linked evidence. No finishing positions or labels were used to choose replacements.
+
+Section 12.1 compares verified grids with the earlier qualifying-order candidate,
+opposite assignments and missing-input treatment. The candidate happens to match
+all official slots, but source evidence justifies the main repair. Thirteen other
+modern races with gaps but no duplicate remain unchanged.
 
 **Impact:** this affects a central predictor in eight modeling entries, including
 two entries in the test window. Changes selected after inspecting test evidence
@@ -221,9 +227,9 @@ supported repairs, and exports a repair log and before/after plot. The raw-sourc
 flags deliberately remain available even when a cleaned representation has been
 reconciled. A row flag is evidence to review, not a claim that a guessed value is true.
 
-Unresolved grid conflicts remain flagged alongside two incomplete pit
-histories, timing/classification discrepancies, and three older constructor
-aggregates. Start and failure-type uncertainties are addressed with explicit
+Original grid conflicts remain recorded after official-source repair. Two incomplete
+pit histories, timing/classification discrepancies, and three older constructor
+aggregates remain unresolved. Start and failure-type uncertainties are addressed with explicit
 conventions and sensitivity analyses. Exact reconstruction needs better source
 records; see `FIXES_AND_REMAINING_ISSUES.md` for recommendations.
 
