@@ -1,14 +1,17 @@
 """Check execution and exported artifacts; scientific assumptions still need review."""
 
 import ast
+import base64
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 
 import nbformat
 import numpy as np
 import pandas as pd
+from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[1]
 nb = nbformat.read(ROOT / "f1_podium_prediction.ipynb", as_version=4)
@@ -279,10 +282,31 @@ image_count = sum("image/png" in output.get("data", {})
                   for cell in code for output in cell.get("outputs", []))
 report_html = ROOT / "report.html"
 if report_html.exists():
-    check("all_notebook_plots_in_report_html", report_html.read_text().count('<img src="data:image/png;') == image_count)
+    manifest = json.loads((ROOT / "outputs/report_manifest.json").read_text())
+    report_text = report_html.read_text()
+    gallery = (ROOT / "report_figures.html").read_text()
+    check("report_manifest_matches_notebook", manifest["notebook_sha256"] == hashlib.sha256((ROOT / "f1_podium_prediction.ipynb").read_bytes()).hexdigest())
+    check("report_manifest_matches_narrative", manifest["content_sha256"] == hashlib.sha256((ROOT / "report_content.md").read_bytes()).hexdigest())
+    included = set(manifest["main_figures"])
+    supplementary = set(manifest["supplementary_figures"])
+    check("report_figure_inventory_complete", len(manifest["notebook_figures"]) == image_count and included.isdisjoint(supplementary) and included | supplementary == set(manifest["notebook_figures"]))
+    check("selected_report_figures_present", report_text.count('<img src="data:image/png;') == len(included) and all(f'data-source="{name}"' in report_text for name in included))
+    check("all_notebook_plots_in_report_html", len(included) == image_count and not supplementary)
+    check("all_notebook_plots_in_figure_gallery", gallery.count('<img style="width:100%" src="data:image/png;') == image_count)
+    for name, figure in manifest["notebook_figures"].items():
+        source_images = [
+            base64.b64decode(o["data"]["image/png"]) for o in nb.cells[figure["notebook_cell"]].get("outputs", []) if "image/png" in o.get("data", {})]
+        check(f"report_original_image_{name}", any(hashlib.sha256(data).hexdigest() == figure["image_sha256"] for data in source_images) and f'id="{name}"' in gallery)
+    pdf = PdfReader(ROOT / "report.pdf")
+    check("report_pdf_page_target", len(pdf.pages) == manifest["editorial_pages"])
+    check("report_pdf_no_section_overflow", all(f"{i} / {len(pdf.pages)}" in (page.extract_text() or "") for i, page in enumerate(pdf.pages, 1)))
+    check("all_notebook_plots_in_report_pdf", sum(len(page.images) for page in pdf.pages) == image_count)
+    pdf_text = re.sub(r"\s+", " ", "\n".join(page.extract_text() or "" for page in pdf.pages))
+    for phrase in ["According to our TA", "Question 1", "Question 2", "Question 3", "Eligibility bounds", "Explanations are not causal effects", "Logistic regression achieves the highest", "9.1 Our pipeline", "9.2 Order", "predict_podium", "exploratory"]:
+        check(f"report_required_content_{phrase}", phrase in pdf_text)
 
 result = {
-    "assessment_date": "2026-10-10",
+    "assessment_date": "2026-10-14",
     "python": sys.version.split()[0],
     "executed_code_cells": len(code),
     "modeling_rows": len(table),

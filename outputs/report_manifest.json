@@ -1,0 +1,250 @@
+{
+  "editorial_pages": 24,
+  "notebook_sha256": "50aed3a6f1638a478db4770ed69f9ddf5d3f31c6b59c44e08023aadabb5e660e",
+  "content_sha256": "23ebf406ee8c1d5da475949ac3645a6d97b61350b6761a67a47833f2fd9b8fc7",
+  "main_figures": [
+    "eda_after_cleaning_impact",
+    "eda_after_coverage",
+    "cleaning_cross_table_repairs",
+    "q1_all_time",
+    "q1_era_change",
+    "q1_quali_vs_grid",
+    "q2_home_effect",
+    "q3_mechanical_retirements",
+    "split_timeline",
+    "features_effect_plots",
+    "features_correlation",
+    "features_trial_incremental",
+    "features_trial_encoding",
+    "preprocessing_effect",
+    "preprocessing_order_experiments",
+    "model_gb_training",
+    "model_nn_training",
+    "model_era_sensitivity",
+    "comparison_curves",
+    "comparison_calibration_seasons",
+    "ablation_groups",
+    "grid_assignment_sensitivity",
+    "xai_permutation_importance",
+    "xai_shap_global_bar",
+    "xai_shap_beeswarm_best_statistical",
+    "xai_shap_beeswarm_neural_network",
+    "xai_local_shap_case_A",
+    "xai_local_shap_case_B",
+    "xai_local_lime",
+    "inference_demo",
+    "eda_before_sentinels",
+    "audit_keys",
+    "eda_before_duplicates",
+    "cleaning_duplicate_rules",
+    "eda_before_cross_table_consistency",
+    "eda_after_durations",
+    "eda_after_target",
+    "eda_after_grid",
+    "q3_trend_and_change",
+    "q3_start_eligibility_sensitivity",
+    "features_missingness",
+    "features_univariate_auc",
+    "preprocessing_ranges",
+    "model_lr_tuning",
+    "model_rf_tuning",
+    "model_all_trials",
+    "comparison_train_val_test",
+    "comparison_confusion"
+  ],
+  "supplementary_figures": [],
+  "notebook_figures": {
+    "eda_before_sentinels": {
+      "notebook_cell": 8,
+      "image_sha256": "135f9cc79a087e3ec9783b6c78569a4d9b90c61ad1e10f41491a2b4e7a83c78f"
+    },
+    "audit_keys": {
+      "notebook_cell": 14,
+      "image_sha256": "7e491d8c243297d9c0aff748fdfb2c7cf1a1f4dec02809969fcac56aafc184ca"
+    },
+    "eda_before_duplicates": {
+      "notebook_cell": 16,
+      "image_sha256": "66d75f49a24553ad60ee3f34b8f27a0a7e5aa91d252aad13542757eb4cc73b64"
+    },
+    "eda_before_cross_table_consistency": {
+      "notebook_cell": 20,
+      "image_sha256": "b117bcbad03c500ff3da090c8546408b0c8c857a1c99f896e98c5cbf79bcdd2f"
+    },
+    "cleaning_duplicate_rules": {
+      "notebook_cell": 29,
+      "image_sha256": "af6f21741f314fc50670039862b790667ea2a6963355898b755d80e78202e1e7"
+    },
+    "cleaning_cross_table_repairs": {
+      "notebook_cell": 33,
+      "image_sha256": "26b93e3f101011f772375d7bbc5e3a18857e79c94df60cfa790cdbc6206411ce"
+    },
+    "eda_after_cleaning_impact": {
+      "notebook_cell": 35,
+      "image_sha256": "e460ba1792db4b816c1cf0fc455d50401875d62a5c95cb5d5f822f9d053e60a5"
+    },
+    "eda_after_durations": {
+      "notebook_cell": 37,
+      "image_sha256": "ea7cb188a083db67cf7f3a806007f113855464996f961849bcea8a2d4938479b"
+    },
+    "eda_after_coverage": {
+      "notebook_cell": 39,
+      "image_sha256": "b12f34059323ebe6dfa7c12750aeed8c13ed602299b32e6429ebc9c748b6e3a8"
+    },
+    "eda_after_target": {
+      "notebook_cell": 41,
+      "image_sha256": "c230391705a6b13b16e4f314895697f6095ec5ded14e448bbef0d835a8631e21"
+    },
+    "eda_after_grid": {
+      "notebook_cell": 43,
+      "image_sha256": "038ba2fefd41adf8ef14813da98b5fd212077fe17b71e9271a6bce828fce0387"
+    },
+    "q1_all_time": {
+      "notebook_cell": 48,
+      "image_sha256": "621a620bcf59f613e18bc0ddf96c652928bb1fed2261bc8e759e96ea73cd6ad1"
+    },
+    "q1_era_change": {
+      "notebook_cell": 49,
+      "image_sha256": "c8079280f7cc54102d7dd1b86bd40191f5d434f4ade4d4c862d0e076bdaf518f"
+    },
+    "q1_quali_vs_grid": {
+      "notebook_cell": 50,
+      "image_sha256": "116116c300ee77a4f869746fd28c3f487725d24606e3b91967f9b3b4b17ed5fd"
+    },
+    "q2_home_effect": {
+      "notebook_cell": 56,
+      "image_sha256": "8d069cad2d7894c34c90bad89b8b3ca937a3851dae48486d7d0a9c3b47c4eaa3"
+    },
+    "q3_mechanical_retirements": {
+      "notebook_cell": 61,
+      "image_sha256": "9f5817e2b76f8c6eb0720fb1e67f906b413403d29a0af411a7ad07896056d928"
+    },
+    "q3_trend_and_change": {
+      "notebook_cell": 62,
+      "image_sha256": "19634b3cd58f54ba0f9c02d654ac5c3373cee5424dbc77852e34bc84afc435b0"
+    },
+    "q3_start_eligibility_sensitivity": {
+      "notebook_cell": 65,
+      "image_sha256": "3c8a59c1bbbf3e3f205bca5e44f3ab26e693a2c0976c36617522e68ee7c62f7f"
+    },
+    "features_missingness": {
+      "notebook_cell": 76,
+      "image_sha256": "aa766bb81ae004d2cd2250e104664f2a277bfa31c8ad8ed33b91ce378e243145"
+    },
+    "split_timeline": {
+      "notebook_cell": 78,
+      "image_sha256": "2a7cffa03c2acc01232403548c65353bb1a19f0fd77c81a9a757520df20d3677"
+    },
+    "features_univariate_auc": {
+      "notebook_cell": 83,
+      "image_sha256": "33f9c54586283d48dac50bf2c14ec0a239cbeccc98e4c6e6efe77b4429f5b7b1"
+    },
+    "features_effect_plots": {
+      "notebook_cell": 85,
+      "image_sha256": "6270dc285db5e50e8bb2c9695e9e9a87632a2f176ddf1b64e840ee7c0be3bce7"
+    },
+    "features_correlation": {
+      "notebook_cell": 87,
+      "image_sha256": "dd5fbe8566759dc17762926cb403452a997f8e6e63fa2a4fdc5b1d6243787b1d"
+    },
+    "features_trial_incremental": {
+      "notebook_cell": 89,
+      "image_sha256": "01d33ebc684090d1e4f0ae9f94e0ee90cf896be932f334dfb368d64751f1cb7a"
+    },
+    "features_trial_encoding": {
+      "notebook_cell": 91,
+      "image_sha256": "d9d8d56854bf0a560158a3bc837023190c54fbafc17833c52a047de4edc4a463"
+    },
+    "preprocessing_effect": {
+      "notebook_cell": 94,
+      "image_sha256": "39952db3687f46c4b4ea2b73c8b20e997ea22181b3f1da5b4b97f513bda01267"
+    },
+    "preprocessing_ranges": {
+      "notebook_cell": 94,
+      "image_sha256": "ad4e495e2d22afc274a4ba855ee92d2c601ce2f248bf3b5a31f3fd9774d5abba"
+    },
+    "preprocessing_order_experiments": {
+      "notebook_cell": 98,
+      "image_sha256": "17b1e2b97bcd265a81edb4145951966673171c813776b46a8b67504b27f6d065"
+    },
+    "model_lr_tuning": {
+      "notebook_cell": 106,
+      "image_sha256": "3cd2f092003e07051c2a5e157528c600aedfed4f461ce220f4b93da8b00fd2cc"
+    },
+    "model_rf_tuning": {
+      "notebook_cell": 108,
+      "image_sha256": "e3d348802e5112663bc7cf540d50a3cedcf5c48594b9cb532fd34a5808f1bd40"
+    },
+    "model_gb_training": {
+      "notebook_cell": 110,
+      "image_sha256": "d589202616c621890bc54b99642bc02f6ccca4c1c0c79fc18da4a07347a46b31"
+    },
+    "model_nn_training": {
+      "notebook_cell": 112,
+      "image_sha256": "d48e322c4e6427a2681b170bf15b8eda2347e612f68d6451d75b272e6cf05c03"
+    },
+    "model_all_trials": {
+      "notebook_cell": 114,
+      "image_sha256": "573cf09741cbf23867db605f10dc990826171f0423029a2559d77deb5bc7d9c5"
+    },
+    "model_era_sensitivity": {
+      "notebook_cell": 116,
+      "image_sha256": "171559700eabf88fd51c8700009faa697e19980ee4900ebbf19891078772ca12"
+    },
+    "comparison_curves": {
+      "notebook_cell": 120,
+      "image_sha256": "39cabd07644bfe14533cd85073e777d41215a81bc7397ac0768448a9431852bd"
+    },
+    "comparison_train_val_test": {
+      "notebook_cell": 121,
+      "image_sha256": "2c08973da18a0b096215dd4e9f3d40d1aec596006ee52631ffa5464b81f1ecd8"
+    },
+    "comparison_confusion": {
+      "notebook_cell": 121,
+      "image_sha256": "fc9f6f1851bebb93a6187a0e89b722ddfbecc2d1796bf6fc94c5568ef5613173"
+    },
+    "comparison_calibration_seasons": {
+      "notebook_cell": 122,
+      "image_sha256": "93ddfc28097c59f5e14629f40f12a674420ebe84a08d6b441a432c5f607a6cd3"
+    },
+    "ablation_groups": {
+      "notebook_cell": 129,
+      "image_sha256": "966a7e173cfba5e7905068d4b76040b442e2c1192718ae3b3367f51da52771e8"
+    },
+    "grid_assignment_sensitivity": {
+      "notebook_cell": 133,
+      "image_sha256": "5a99075eded0520522e156c0c2cc1feaedf6f002ac4e9f293d037ff9db4c33a2"
+    },
+    "xai_permutation_importance": {
+      "notebook_cell": 136,
+      "image_sha256": "ad00de610f4712907c338d12bfa70d3c8f59bb56ce0f8514af1292f6bb0002db"
+    },
+    "xai_shap_beeswarm_best_statistical": {
+      "notebook_cell": 138,
+      "image_sha256": "fc00f0d532ad39aa9fee63ee3a71cbae623d89f9414e07dea29326bb73dbc892"
+    },
+    "xai_shap_beeswarm_neural_network": {
+      "notebook_cell": 138,
+      "image_sha256": "35b46a69b49e385772e3cb8cbafee33fd59b29969faa11743f5a99f069e2b992"
+    },
+    "xai_shap_global_bar": {
+      "notebook_cell": 139,
+      "image_sha256": "afe3f8ebf56e927148fd4eaf069c83bc84441db9aee18b5d19c281cee24cf6fd"
+    },
+    "xai_local_shap_case_A": {
+      "notebook_cell": 142,
+      "image_sha256": "6d2ccf0a12f2bd3b240d55972cac204967867e8947e82591435af685674b1d99"
+    },
+    "xai_local_shap_case_B": {
+      "notebook_cell": 142,
+      "image_sha256": "c3a7719aebb4e6606497d452678a6474a800b562ef6feb3413543c4bf1b2ff3b"
+    },
+    "xai_local_lime": {
+      "notebook_cell": 143,
+      "image_sha256": "55cf0469f707e5df313ee3c99e71f93ee331dafe646531eddc798b508d96b43f"
+    },
+    "inference_demo": {
+      "notebook_cell": 150,
+      "image_sha256": "c7abe37ffb18172482438a6c7a40e6163bf4c1ff4f90d48bdf0988e977465e29"
+    }
+  }
+}

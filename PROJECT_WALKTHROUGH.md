@@ -672,8 +672,10 @@ and is not a Milestone 1 requirement.
 **Notebook: Section 15; files: README and requirements audit.**
 
 The notebook saves figures and CSV tables and checks that raw files remain
-unchanged. `make_report.py` converts explanations, plots and selected tables
-from the executed notebook into a PDF. The report is derived from the notebook;
+unchanged. `make_report.py` combines `report_content.md` with key figures and
+computed result tables into a 24-page PDF, including all 48 figures with
+interpretations in the main analysis and Appendices A–I. The same figures are
+available in `report_figures.html` and the notebook. The report is derived from the notebook;
 it is not independent evidence that the notebook currently runs.
 
 The assignment also asks for accessible Kaggle and GitHub links and a PDF.

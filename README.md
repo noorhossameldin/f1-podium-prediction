@@ -5,6 +5,8 @@ after qualifying and before the race start. Data: Formula 1 World Championship 1
 
 ## Team members
 
+**Team 63**
+
 | Student ID | Name |
 |---|---|
 | 58-20196 | Mohamed Ahmed Mohamed Abdelaziz |
@@ -17,8 +19,10 @@ after qualifying and before the race start. Data: Formula 1 World Championship 1
 | Path | What it is |
 |---|---|
 | `f1_podium_prediction.ipynb` | The single run-all notebook: audit, cleaning, EDA, data-engineering answers, features, models, ablation, XAI, inference |
-| `report.pdf` | Analytical report, generated from the executed notebook |
-| `make_report.py` | Rebuilds `report.pdf` from the executed notebook |
+| `report.pdf` | 24-page analytical report: main analysis and explained Appendices A–I, including all 48 notebook plots |
+| `report_content.md` | Curated report narrative; figures and comparison tables are inserted by the builder |
+| `report_figures.html` | Browsable gallery of the same 48 plots included in the report PDF |
+| `make_report.py` | Rebuilds the complete PDF, HTML, figure gallery and source manifest |
 | `Data/` | The 14 raw CSV files (never modified; the notebook verifies this with file hashes) |
 | `figures/` | Every figure, saved by the notebook |
 | `outputs/` | Modeling table, model comparison, all hyperparameter trials, ablation and order-experiment results |

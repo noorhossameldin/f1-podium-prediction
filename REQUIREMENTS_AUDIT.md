@@ -1,197 +1,161 @@
-# Milestone 1 requirements audit — 10 October 2026
+# Milestone 1 final requirements review — 14 October 2026
 
-## Verdict
+## Verdict and scope
 
-**The local implementation and report are complete; submission is not yet verified.**
-The supported CSV repairs, Q3 denominator correction, calendar/roster feature
-changes and interpretation corrections have been applied. Remaining uncertainty
-is documented rather than filled with invented race facts. Submission still
-requires verified, accessible Kaggle/GitHub links. The four supplied team names
-and student IDs are included in the report and README.
+We reread all eight pages of the supplied **CSEN903 - Project - MS1 Description.pdf**
+and checked the current notebook, exported tables and PDF against the objectives,
+eight deliverables, evaluation expectations and checkbox checklist.
 
-The eight-page brief was reread against the current files on 10 October 2026.
-All eight deliverable categories are present locally. This is not a claim that
-the revised holdout is still untouched: earlier test scores were reviewed during
-development, so that part of the brief's unseen-test expectation needs the
-qualification documented below. The final models still choose hyperparameters,
-thresholds and the inference model using validation only.
+**All eight deliverable categories are implemented locally.** A fresh top-to-bottom
+execution of all **84 code cells** completed successfully in **117 seconds**, and
+**445 artifact checks** pass. The **24-page report includes all 48 notebook plots**,
+with explanations: 30 in the main analysis and 18 in Appendices A–I. Team 63 and
+all four members/IDs appear in the report, with each member on a separate line.
 
-The assessment uses the supplied eight-page assignment PDF, the notebook,
-supplied CSVs and regenerated artifacts. Assignment instructions are criteria
-being assessed; they were not treated as instructions to publish or submit.
-Scientific repairs use CSV evidence, with four starting-grid corrections checked
-against official F1/FIA records after the team reported its TA had advised online
-verification. Sources, access dates, original values and changes are documented
-in notebook Section 3.5, the report and `GRID_RECONSTRUCTION.md`.
+This is not an unconditional claim that every requirement is fully satisfied:
 
-## What was verified after repairs
+1. **Unseen-test qualification:** earlier test scores were inspected and source
+   repairs followed a full-data audit. The revised 2022–2024 holdout is exploratory,
+   not a fresh untouched test. Final model settings, stopping and thresholds still
+   use training/validation only. Re-running the same seasons does not undo prior
+   exposure. A genuinely unseen later period is needed for a fresh final test.
+2. **GitHub delivery is not verified:** the remote is
+   `https://github.com/noorhossameldin/f1-podium-prediction.git`. An unauthenticated
+   read requested a username and could not complete. This does not establish
+   whether the cause is privacy, permissions or another access issue. Current
+   local report/notebook changes are uncommitted; the final version must be
+   uploaded and evaluator access checked before submission.
+3. **Team readiness requires preparation:** files cannot certify that every
+   member can explain the choices. `PROJECT_WALKTHROUGH.md` supplies study prompts.
 
-- Local `.venv`: Python **3.12.15**, installed dependencies and **ipykernel**;
-  registered **F1 Podium (.venv, Python 3.12)** for VS Code.
-- All **84 code cells** executed top to bottom without notebook errors.
-- Fourteen primary keys and all **23 declared foreign-key relationships** pass.
-  The additional semantic audit covers fifteen cross-table/column issue types.
-- Raw files and in-memory raw copies remain unchanged. Cleaning uses copies,
-  preserves source values and exports repair records and unresolved flags.
-- **378 independent artifact checks** pass, including labels, modeling grain,
-  forty sampled prior-history calculations, repairs, Q3 eligibility/rates,
-  training-only feature treatments, metrics, thresholds and selected model.
-- **8,970 rows**, **428 races**, **28 features**, **1,284 podium labels**;
-  **60 main model trials**, **52 ablation configurations**, **three order
-  experiments**, and **48 notebook plots**.
-- Report HTML includes all 48 plots. The regenerated PDF contains the current
-  notebook explanations and results. Content checks are not a complete visual
-  review of every page break and table.
+**The Kaggle link/publication check is excluded at the user's request.** We did
+not publish, push, submit, change sharing, or contact anyone during this review.
 
-For independent artifact checks, run `%run scripts/validate_artifacts.py` in
-the selected project kernel, or `.venv/bin/python scripts/validate_artifacts.py`.
-Detailed results are in `outputs/validation_summary.json`. Passing checks proves
-execution and consistency under the documented conventions, not that every
-historical source value is correct.
+## Source brief and verification evidence
 
-## Requirements mapped to evidence
+- Assignment: `/Users/masry/Downloads/CSEN903 - Project - MS1 Description.pdf`.
+- Assignment SHA-256:
+  `aa5d6cde88b5c43e045c66fb7015373750da1dbd7fd3b3dc8b79482822db85a5`.
+- Fresh execution: `.venv/bin/python scripts/run_notebook.py`; 84/84 cells,
+  no execution-error outputs. The runner saves the notebook only on success.
+- Report: `.venv/bin/python make_report.py`; **24 pages**, no section spillover,
+  every notebook figure included once. All pages were rendered for layout review.
+- Validation: `.venv/bin/python scripts/validate_artifacts.py`; **445 checks pass**.
+- Figure inventory and source-image hashes: `outputs/report_manifest.json`.
+- Data/metric checks and raw hashes: `outputs/validation_summary.json`.
+- All 14 raw CSV hashes also match the committed audit's recorded hashes.
 
-Page numbers refer to the supplied assignment PDF; section numbers refer to
-`f1_podium_prediction.ipynb`.
+Assignment wording is treated as criteria to assess, not as authorisation to
+publish or submit. A passing check establishes consistency under our documented
+conventions; it does not prove every historical record is correct.
 
-### Eight deliverables in the brief (pages 5–6)
+## Eight deliverables (brief page 5)
 
-| Deliverable | Current evidence | Status |
-|---|---|---|
-| 1. One sectioned Run All notebook containing the complete pipeline | `f1_podium_prediction.ipynb`; 84 executed code cells, no errors | Complete locally; Kaggle execution unverified |
-| 2. EDA with plots | Sections 2 and 4; before/after cleaning, computed audits and distributions | Present |
-| 3. Unique driver–race modeling table with documented duplicates and pre-race features | `outputs/modeling_table.csv`; 8,970 entries, 28 features; Sections 3 and 6 | Present; retrospective input-availability assumptions disclosed |
-| 4. Model comparison and justified primary/secondary metrics | Section 11; six models/reference variants on train, validation and test; ROC-AUC, AP, F1, precision, recall, Brier, accuracy | Present; revised test is exploratory, not a new untouched evaluation |
-| 5. Feature-group ablations and at least two preprocessing-order experiments | Sections 9.2 and 12; 52 ablation configurations, three order experiments | Present |
-| 6. Plotted and interpreted global/local explanations | Section 13; permutation importance, SHAP, LIME; causal claims explicitly excluded | Present |
-| 7. Inference function on complete and partially missing records | Section 14; 28-feature, 22-feature and grid-only examples | Present |
-| 8. Analytical report with all three questions, figures, features/cutoff and limitations | `report.pdf`; 42 pages, current notebook explanations/results and four team names/IDs | Present locally; final visual review recommended |
+Notebook section numbers below refer to `f1_podium_prediction.ipynb`; report page
+numbers refer to the rebuilt 24-page `report.pdf`.
 
-The page-8 submission items are separate: an accessible Kaggle notebook link,
-an accessible GitHub repository containing this version, and the PDF report.
-The PDF exists locally; no Kaggle publication URL is recorded and current
-repository changes remain uncommitted/unpushed. A GitHub browser fetch failed,
-so evaluator access could not be verified; this does not establish that the
-repository is private or inaccessible to the team.
-
-### Detailed requirement mapping
-
-| Requirement | PDF pages | Implementation/evidence | Assessment |
+| Deliverable | Notebook and saved evidence | Report evidence | Assessment |
 |---|---|---|---|
-| Correct binary target and driver–race unit | 1–3 | Opening; Sections 3.4, 6.4; raw-label agreement | Met |
-| All fourteen relational tables | 1 | Sections 1–2; `Data/` | Met |
-| EDA before and after cleaning, with plots | 2 | Sections 2 and 4 | Met |
-| Sentinel handling and semantic typing | 2 | Sections 2.1–2.2, 3.1–3.2 | Met |
-| Unique `(raceId, driverId)`; explained duplicate rule | 2 | Sections 2.5, 3.4; three rule comparisons | Met, with documented historical caveat |
-| Primary/foreign-key audits | 2 | Sections 2.3–2.4; independent checks | Met |
-| Immutable raw files; cleaning on copies | 2 | `RAW`/`CLEAN`; Sections 1.1 and 15.2 | Met |
-| Q1: circuits, eras, grid versus qualifying | 2 | Section 5 Q1; joins, rates, plots | Met; observed changes distinguished from proof of underlying change |
-| Q2: home country controlling for starting position | 3 | Section 5 Q2; mapping, stratification and logistic check | Met; conclusion states no detectable effect under the controls |
-| Q3: mechanical retirements per race start, two eras | 3 | Section 5 Q3; status classification and sensitivity | Repaired; marked non-starts excluded, unresolved starts quantified with sensitivity |
-| Each question has multi-hop joins, grain, missingness and cutoff explanation | 2–3 | Section 5 markdown and computed answers | Met; Q3 documents the estimated denominator and its limits |
-| Feature evidence and preserved trials | 3, 6–7 | Sections 8.1–8.4; plots, correlations and comparisons | Met |
-| Leakage-safe form and standings | 1, 5, 7 | Shifted histories; previous-round joins; six-race corruption test | Outcome-history and future-round invariance checks pass; archive caveat below |
-| Grid/qualifying and context valid at cutoff | 1, 5 | Section 6.2 | Season-length/result-count dependencies removed; archived entry/grid snapshots unavailable |
-| Justified train/validation/test split | 3, 7 | Section 7; chronological seasons and disjoint races | Met |
-| At least two statistical models plus shallow NN, same rows/features | 3 | Logistic regression, random forest, boosting; 1–2-layer PyTorch NN | Met; three statistical model families present |
-| Appropriate baseline; at least three modeling attempts | 6 | Default logistic baseline; 60 logged attempts | Met |
-| Explain model mechanisms and limitations | 6–7 | Section 10 descriptions; Section 15 limitations | Met |
-| ROC-AUC, PR summary and F1 on train/validation/test | 3–5 | Section 11; 18-row comparison CSV | Met; PR summary is average precision |
-| Five metrics in deliverable; primary/secondary justification | 5 | ROC-AUC, AP, F1, precision, recall; Section 10.1 | Met; also reports Brier and accuracy |
-| Hyperparameters and thresholds selected without test labels | 4 | Sections 10 and 11; threshold consistency; validation winner | Met in final-model selection |
-| Feature-group ablation for each group | 4–5 | Section 12; six groups × four models | Met |
-| At least two preprocessing-order experiments | 5, 7 | Section 9.2; three experiments | Met; deliberately invalid development-only fitting excludes test rows |
-| Global permutation importance and SHAP | 4–5, 8 | Section 13; statistical model and NN | Met |
-| Local LIME and/or SHAP, plotted and interpreted | 4–5, 8 | Two cases, both methods | Met |
-| Explainability distinguished from causality | 5 | Sections 13 and 15 | Met explicitly |
-| Inference on complete and partially missing records | 5 | Section 14; 28-feature and 22-feature records; grid-only example | Met |
-| One logical, sectioned Run All notebook | 5–6 | Fresh successful execution | Met locally; Kaggle execution unverified |
-| Analytical PDF with questions, figures, features and limitations | 5–7 | `report.pdf`, generated from current execution | Present, regenerated after repairs; all four supplied members/IDs included |
-| Accessible Kaggle notebook link | 8 | No project publication URL supplied/found in README | **Unverified** |
-| Accessible GitHub repository link | 8 | Configured remote: `noorhossameldin/f1-podium-prediction` | **Unverified public/evaluator accessibility** |
-| Team members prepared to justify choices | 6 | `PROJECT_WALKTHROUGH.md` provides study checkpoints | Cannot certify from source files |
+| 1. One sectioned Run All notebook with the complete pipeline | Sections 1–15; 84 freshly executed code cells; no errors | Main analysis and Appendices A–I | Met locally |
+| 2. EDA supported by plots | Sections 2 and 4; before/after missingness, types, keys, grain, durations, coverage and target | Pages 1–2, Appendices A–D | Met |
+| 3. Unique driver–race table; documented duplicates and pre-race features | Sections 3 and 6; `outputs/modeling_table.csv`; 8,970 rows, 428 races, 28 features, 1,284 positives | Pages 2 and 7; Appendix B | Met under stated availability/history assumptions |
+| 4. Statistical/NN model comparison, required metrics and primary/secondary rationale | Sections 10–11; 18 model/split rows in `outputs/model_comparison.csv`; AP, ROC-AUC, F1, precision, recall, Brier, accuracy | Pages 10–11 and Appendix I; all seven metrics on train/validation/holdout | Implemented; unseen-test qualification above |
+| 5. Group ablation and at least two preprocessing-order experiments | Sections 9.2 and 12; three order experiments, 52 ablation configurations across four model families | Pages 9 and 12 | Met |
+| 6. Global and local explanations, plotted and interpreted | Section 13; permutation, SHAP, two local cases with both SHAP and LIME | Pages 13–14 | Met; causal claims explicitly excluded |
+| 7. Inference demonstrated on complete and partially missing records | Section 14; 28-input, 22-input and one-input examples; unknown-name rejection | Page 15 | Met |
+| 8. Analytical PDF: three answers, features/cutoff and limitations | `report.pdf`, `report_content.md`, source notebook and exported results | 24 pages; all 48 plots and interpretations | Met locally |
 
-The deliverables refer to “all five metrics,” although the earlier metric table
-names three. The implementation covers both readings by reporting ROC-AUC, AP,
-F1, precision and recall.
+The brief names three headline metrics earlier, then asks for “all five metrics”
+in the deliverables. We cover both readings by including ROC-AUC, AP, F1,
+precision and recall, plus Brier and accuracy. AP is explicitly identified as
+average precision rather than trapezoidal PR integration.
 
-## Applied corrections
+## Objective and checkbox checklist (brief pages 1–4, 6–8)
 
-See `FIXES_AND_REMAINING_ISSUES.md` for the before/after decisions and
-`DATA_CONSISTENCY_AUDIT.md` for original CSV evidence.
+| Requirement | Evidence and review finding | Status |
+|---|---|---|
+| Binary podium target and one driver entering one race | `positionOrder <= 3`; target matches original labels; unique `(raceId, driverId)` | Met |
+| All 14 relational tables considered | Raw-table inventory; key audit; source/use/cutoff table | Met |
+| EDA before and after cleaning; implementation and plots | Programmatic audits, distributions and before/after comparison; report contains the original diagnostic plots | Met |
+| Sentinels including literal `\N`; semantic dates/durations | Both `\N` and empty strings handled; numeric/nullable-ID typing; seconds parser checked against lap milliseconds | Met |
+| Duplicate driver–race entries checked, resolved and justified | 85 pairs, 91 surplus rows; three rules compared; credited-podium preservation and historical cost stated | Met |
+| Primary keys non-null/unique; foreign keys reconcile | 14 primary-key and 23 foreign-key checks; semantic conflicts checked separately | Met |
+| Raw files immutable; cleaning on copies | End-of-run file/frame checks and comparison with committed raw hashes | Met |
+| Q1 multi-hop joins; circuits, hybrid-era comparison, grid versus qualifying | Results/calendar/circuits/qualifying joins; eligible circuit counts, Wilson intervals, ranking and definition sensitivity | Met |
+| Q2 multi-hop joins; home-country mapping and starting-position control | Nationality/country mapping; stratified grid, decade, driver and constructor-season checks; logistic cross-check | Met |
+| Q3 multi-hop joins; mechanical failures excluding crash/driver/regulation labels | Status allowlist, separate start-eligibility rule, constructor × era aggregation, strict/broad labels and start bounds | Met as a documented CSV-based estimate; exact causes/starts unresolved |
+| Each answer has grain, missingness, cutoff explanation and results | Written question methods and computed Markdown answers; report pages 3–6 and Appendix E | Met |
+| Feature selection justified with plots/correlations/trials | Section 8; single-feature evidence, curves, correlations, group addition and encoding/inclusion trials retained | Met |
+| Plot effect of selected features | Training-only binned relationships and ranking plots; report page 8 and Appendix F | Met |
+| Leakage-safe form and standings | Shifted history; aggregate team race before shifting; previous-round standings; negative-control and future-calendar checks | Met for tested dependencies; publication-archive assumption disclosed |
+| Effects of preprocessing on distributions/ranges/values | Histograms, before/after table and range figure | Met |
+| Preprocessing-order experiments reported | Split/fit, split/history, impute/scale; alternatives use development data only | Met; deliberately invalid order clearly labelled |
+| Appropriate training/validation/testing split and justification | Chronological, race-disjoint seasons; all models use same splits | Met |
+| At least two statistical ML models and shallow network | Logistic regression, random forest, gradient boosting, 1–2-layer PyTorch NN | Met |
+| Same rows and features across required learned models | Shared 28-feature modeling table and preprocessing; grid-only rule is an additional reference | Met |
+| Baseline is statistical ML or shallow FFNN | Default logistic regression; grid-frequency reference is additional | Met |
+| At least three distinct modeling attempts; comparisons visible | 60 logged baseline/hyperparameter attempts, separate model sections and displayed trial tables; feature/preprocessing variants also compared | Met |
+| Model mechanism and limitations explained | Linear log-odds, averaged trees, sequential boosting and shallow network; complexity/regularisation/stopping discussed | Met |
+| Metrics on training/validation and unseen test | All required split scores are computed and reported | Scores present; fresh unseen-test condition qualified |
+| Hyperparameters/thresholds use only train/validation | Selection functions and frozen thresholds; boosting/network stopping uses validation | Met in final-model selection; repeated validation reuse disclosed |
+| Training/validation performance and plots | Tuning/loss curves, score panels, all-trial search; report page 10 and Appendices G–I | Met |
+| Feature-group ablation retrains, one group at a time | Six groups × four families; drop-group and group-only fits; matched NN seeds | Met |
+| Global permutation importance and SHAP | Both selected statistical model and network; feature/group permutation; SHAP shares and distributions | Met |
+| Local explanation including LIME | Two selected cases, SHAP waterfalls and LIME with interpretation | Met, including checklist page 8's LIME wording |
+| Explainability distinguished explicitly from causality | Report page 13 states that importance means model reliance, not cause; examples and limitations repeat the distinction | Met |
+| All plots and answers in notebook and structured report | Each of the 48 notebook figures appears exactly once in the PDF; Appendices A–I explain 18 additional diagnostics | Met after this review's report revision |
+| Logical sectioning, Markdown justification, no hidden manual modification | Fresh top-to-bottom execution and notebook source review | Met locally |
+| Every member can justify choices using evidence | Study walkthrough and report provide explanations; individual preparation cannot be tested from artifacts | Team action |
 
-- Swapped `stop`/`lap` in seven identified Monaco 2024 pit records.
-- Reconciled ten qualifying constructor IDs and 32 car numbers to canonical
-  result-entry metadata; kept originals. Removed four identical 2015 alias
-  constructor aggregates without merging constructor histories globally.
-- Represented 258 unranked fastest laps as missing in a derived column.
-- Checked eight source-conflicted grid entries against official starting grids
-  following reported TA guidance. Corrected four cleaned slots, confirmed four
-  unchanged, and resolved all four modeled-era clashes. Main `grid_pos` and
-  `grid_drop` now use verified values; original values/source flags and all links
-  are preserved. Earlier candidate, opposite and missing-input policies remain
-  refitted sensitivity comparisons. See `GRID_RECONSTRUCTION.md`.
-- Q3 separates failure labels from start evidence, excludes marked non-starts,
-  preserves positive-lap starts and quantifies 112 uncertain zero-lap entries.
-  The same convention supplies past-only constructor reliability.
-- Replaced eventual `season_progress` with known `round_number` and post-race
-  `field_size` with `qualifying_field_size`. Renamed misleading pit-lane and
-  driver-start count features to `no_grid_slot` and historical entry counts.
-- Corrected overstatements about home advantage, rank changes, seed variation,
-  race-constant predictors, long-stop causes and explanations of prediction errors.
-- The deliberately invalid preprocessing example now uses development data only.
-  All final pipelines fit preprocessing on training only; choices use validation.
+## Repairs made during this review
 
-## Remaining scientific limitations and recommendations
+- Restored all 18 omitted diagnostic plots to the PDF in nine explained appendix
+  pages. The previous 15-page PDF plus a separate HTML gallery did not establish
+  compliance with page 7's “all plots” requirement. The new report is one PDF.
+- Added a build-time check that every notebook figure is included once and a
+  validation check that the PDF contains all 48 images.
+- Rebuilt the report and manifest from the freshly executed notebook, resolving
+  the earlier stale notebook/report fingerprint mismatch.
+- Corrected stale prose that said the verified grid entries were still masked.
+- Corrected the partially missing inference description from five to six fields.
+- Clarified ROC-AUC, the SHAP reference/output scale, conditional ablation effects,
+  missing-indicator evidence, and the revised holdout's exploratory status.
+- Aligned notebook TA wording with the report's team voice, while preserving
+  dated source-verification records in provenance exports.
 
-Official sources now resolve the four identified grid clashes. The supplied CSVs
-cannot reconstruct every missing pit stop, classification/timing mismatch or
-exact start of a zero-lap entry. Keep the
-provenance flags and publish the chosen conventions/sensitivity results. Obtain
-reliable entry/start/timing records before replacing unresolved values. Exact
-mechanical-failure causes and continuity between renamed organisations also need
-additional evidence. The assignment's `positionOrder <= 3` target remains intact.
+The computational model configurations, target and split boundaries did not
+change. Freshly generated model scores match the reported rounded results.
 
-Round number and qualifying entry count remove the identified future-data
-proxies, but the dataset still lacks archived pre-race entry/grid publication
-snapshots. Describe this retrospective availability assumption. To validate live
-forecasting, build rows from a timestamped pre-race entry list.
+## Important scientific assumptions to retain
 
-This revision follows an audit of all seasons, including test-era source records,
-and earlier test scores had already been inspected. **The revised 2022–2024
-holdout is exploratory**, even though hyperparameters and thresholds still use
-validation only. Freeze the current rules and use unseen later races for a new
-untouched final evaluation. Do not select further changes on that new test.
+1. The historical best-result shared-drive rule uses the outcome. Its affected
+   rows end in 1978, outside modeling, but it can affect long-history summaries.
+2. Grid corrections follow official starting-grid evidence and TA guidance;
+   model scores do not establish historical truth. Original values and sources
+   remain in exports. Other gaps are not automatically filled.
+3. Mechanical rates describe recorded labels under stated start conventions.
+   Uncertain zero-lap entries and ambiguous labels have separate sensitivity
+   analyses. Eligibility bounds are not statistical confidence intervals.
+4. Driver form counts entries, including non-starts; Q3 reliability uses assumed
+   starts. These denominators are not interchangeable.
+5. Earlier races may update history before later validation/holdout races. This
+   matches race-by-race forecasting, not a whole-season forecast made in advance.
+6. Retrospective entries/grids stand in for pre-race publications. The CSVs lack
+   archived timestamped roster/grid snapshots. Specific corruption checks do not
+   establish all information-availability assumptions.
+7. Renamed constructor histories, qualifying-format drift, sprint-grid effects,
+   unobserved weather/tyres/strategy and era changes remain limitations.
+8. Repeated validation use and already-inspected holdout data limit claims.
+   Separate bootstrap intervals and NN seed variation are not paired model tests.
 
-Leakage restrictions apply to training, validation and test rows. Every row's
-inputs must respect its own race cutoff; preprocessing is fitted on training,
-selection uses validation, and test evaluates the frozen choices. Earlier test
-race outcomes can enter features for later test races only under the stated
-race-by-race forecasting protocol.
+## Submission items (brief page 8)
 
-## Remaining submission work
+| Item | Current state |
+|---|---|
+| Kaggle notebook link | Excluded from this review at the user's request |
+| Accessible GitHub repository containing the final code | Remote configured; anonymous access not verified; final local changes not uploaded by this review |
+| Analytical report in PDF | `report.pdf`, 24 pages, Team 63, all 48 plots with explanations |
+| Team evaluation readiness | Every member must prepare; see `PROJECT_WALKTHROUGH.md` |
 
-1. Run the notebook in Kaggle with the intended dataset, save/publish the version
-   and add its evaluator-accessible link to README. Local execution cannot
-   verify Kaggle compatibility or publication.
-2. Commit/push the final reviewed files and verify evaluator access to the GitHub repository
-   `https://github.com/noorhossameldin/f1-podium-prediction` and include both links
-   in the submission. A public-page fetch could not verify accessibility. Final review changes are
-   still local and must be committed/pushed before that link represents this version.
-3. Review PDF page breaks and table legibility and practise the checkpoints in
-   `PROJECT_WALKTHROUGH.md`.
-
-The PDF states **18 October 2026, 11:59 pm** as the deadline. This is the supplied
-brief's date; a later course announcement was not checked. The README and project
-report are prepared locally; no publishing or submission was performed.
-
-## Current result to explain at evaluation
-
-Gradient boosting is selected by validation AP **0.7555**, with **43** rounds,
-depth **4**, learning rate **0.1**, L2 **0.0** and threshold **0.3906**.
-Its revised holdout AP is **0.6883**, ROC-AUC **0.9374**, F1 **0.6651**, precision
-**0.6540** and recall **0.6765**. The logistic baseline reaches AP **0.6959**;
-the grid-only rule reaches **0.6465**. The selected model need not win on test,
-and these scores do not prove that extra complexity outperforms logistic
-regression on future seasons. Selecting a replacement based on the test winner
-would compromise that evaluation further.
+The supplied brief states a deadline of **18 October 2026 at 11:59 PM**. This is
+recorded from the PDF, not independently verified as a later announcement.

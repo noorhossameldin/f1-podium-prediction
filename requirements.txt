@@ -13,3 +13,4 @@ ipykernel
 # only needed to build the PDF report
 markdown
 nbformat
+pypdf
